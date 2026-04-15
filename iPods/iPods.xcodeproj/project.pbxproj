@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		F1BD6B8D2F92C06E0013DAD0 /* DesignSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19F804D2F923269007E4820 /* DesignSystem.framework */; };
 		F1BD6B8E2F92C06E0013DAD0 /* DesignSystem.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F19F804D2F923269007E4820 /* DesignSystem.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -25,17 +26,38 @@
 			proxyType = 1;
 			remoteGlobalIDString = F1D67A872F9154C900039D1B;
 			remoteInfo = DesignSystem;
+
+		D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
+		D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D7FFD06D2F8EBB6500327536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7FFD0662F8EBB6500327536;
+			remoteInfo = Networking;
+d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+
 		F1D67A792F91544E00039D1B /* Embed Frameworks */ = {
+
+		D7FFD0712F8EBB6500327536 /* Embed Frameworks */ = {
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+
 				F1BD6B8E2F92C06E0013DAD0 /* DesignSystem.framework in Embed Frameworks */,
+
+				D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */,
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,8 +65,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+
 		F19F804C2F923268007E4820 /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19F804D2F923269007E4820 /* DesignSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
+		D7FFD0672F8EBB6500327536 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7FFD0772F8EBC7D00327536 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		F40DD4AD2F8D818C00D25F9E /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -67,12 +95,18 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+
 		F1D67A892F9154C900039D1B /* DesignSystem */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				F1D67A9C2F915EB700039D1B /* Exceptions for "DesignSystem" folder in "iPods" target */,
 			);
 			path = DesignSystem;
+
+		D7FFD0682F8EBB6500327536 /* Networking */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Networking;
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			sourceTree = "<group>";
 		};
 		F40DD4AF2F8D818C00D25F9E /* iPods */ = {
@@ -86,10 +120,22 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+
 		F1D67A852F9154C900039D1B /* Frameworks */ = {
+
+		D7FFD0642F8EBB6500327536 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F40DD4AA2F8D818C00D25F9E /* Frameworks */ = {
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +160,9 @@
 		F40DD4A42F8D818C00D25F9E = {
 			isa = PBXGroup;
 			children = (
+				D7FFD0772F8EBC7D00327536 /* Secrets.xcconfig */,
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
+
 				F1D67A892F9154C900039D1B /* DesignSystem */,
 				F19F804C2F923268007E4820 /* iPods.app */,
 				F19F804D2F923269007E4820 /* DesignSystem.framework */,
@@ -126,6 +174,26 @@
 
 /* Begin PBXHeadersBuildPhase section */
 		F1D67A832F9154C900039D1B /* Headers */ = {
+
+				D7FFD0682F8EBB6500327536 /* Networking */,
+				F40DD4AE2F8D818C00D25F9E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F40DD4AE2F8D818C00D25F9E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F40DD4AD2F8D818C00D25F9E /* iPods.app */,
+				D7FFD0672F8EBB6500327536 /* Networking.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D7FFD0622F8EBB6500327536 /* Headers */ = {
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,6 +203,7 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+
 		F1D67A872F9154C900039D1B /* DesignSystem */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1D67A922F9154C900039D1B /* Build configuration list for PBXNativeTarget "DesignSystem" */;
@@ -143,12 +212,23 @@
 				F1D67A842F9154C900039D1B /* Sources */,
 				F1D67A852F9154C900039D1B /* Frameworks */,
 				F1D67A862F9154C900039D1B /* Resources */,
+
+		D7FFD0662F8EBB6500327536 /* Networking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7FFD0742F8EBB6500327536 /* Build configuration list for PBXNativeTarget "Networking" */;
+			buildPhases = (
+				D7FFD0622F8EBB6500327536 /* Headers */,
+				D7FFD0632F8EBB6500327536 /* Sources */,
+				D7FFD0642F8EBB6500327536 /* Frameworks */,
+				D7FFD0652F8EBB6500327536 /* Resources */,
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+
 				F1D67A892F9154C900039D1B /* DesignSystem */,
 			);
 			name = DesignSystem;
@@ -156,6 +236,14 @@
 			);
 			productName = DesignSystem;
 			productReference = F19F804D2F923269007E4820 /* DesignSystem.framework */;
+		D7FFD0682F8EBB6500327536 /* Networking */,
+			);
+			name = Networking;
+			packageProductDependencies = (
+			);
+			productName = Networking;
+			productReference = D7FFD0672F8EBB6500327536 /* Networking.framework */;
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			productType = "com.apple.product-type.framework";
 		};
 		F40DD4AC2F8D818C00D25F9E /* iPods */ = {
@@ -165,13 +253,21 @@
 				F40DD4A92F8D818C00D25F9E /* Sources */,
 				F40DD4AA2F8D818C00D25F9E /* Frameworks */,
 				F40DD4AB2F8D818C00D25F9E /* Resources */,
+
 				F1D67A792F91544E00039D1B /* Embed Frameworks */,
+
+				D7FFD0712F8EBB6500327536 /* Embed Frameworks */,
+ (chore(networking): scaffold target and wire credentials via xcconfig)
 			);
 			buildRules = (
 			);
 			dependencies = (
+
 				F1D67A8F2F9154C900039D1B /* PBXTargetDependency */,
 				F1BD6B902F92C06E0013DAD0 /* PBXTargetDependency */,
+
+				D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */,
+(chore(networking): scaffold target and wire credentials via xcconfig)
 			);
 			fileSystemSynchronizedGroups = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
@@ -190,11 +286,19 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					F1D67A872F9154C900039D1B = {
 						CreatedOnToolsVersion = 26.2;
+
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					D7FFD0662F8EBB6500327536 = {
+						CreatedOnToolsVersion = 26.3;
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 					};
 					F40DD4AC2F8D818C00D25F9E = {
 						CreatedOnToolsVersion = 26.4;
@@ -216,13 +320,21 @@
 			projectRoot = "";
 			targets = (
 				F40DD4AC2F8D818C00D25F9E /* iPods */,
+
 				F1D67A872F9154C900039D1B /* DesignSystem */,
+
+				D7FFD0662F8EBB6500327536 /* Networking */,
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+ 
 		F1D67A862F9154C900039D1B /* Resources */ = {
+
+		D7FFD0652F8EBB6500327536 /* Resources */ = {
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,7 +351,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+
 		F1D67A842F9154C900039D1B /* Sources */ = {
+
+		D7FFD0632F8EBB6500327536 /* Sources */ = {
+d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,6 +372,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+
 		F1BD6B902F92C06E0013DAD0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F1D67A872F9154C900039D1B /* DesignSystem */;
@@ -265,11 +382,21 @@
 			isa = PBXTargetDependency;
 			target = F1D67A872F9154C900039D1B /* DesignSystem */;
 			targetProxy = F1D67A8E2F9154C900039D1B /* PBXContainerItemProxy */;
+
+		D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7FFD0662F8EBB6500327536 /* Networking */;
+			targetProxy = D7FFD06D2F8EBB6500327536 /* PBXContainerItemProxy */;
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+ 
 		F1D67A932F9154C900039D1B /* Debug */ = {
+
+		D7FFD0722F8EBB6500327536 /* Debug */ = {
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -283,7 +410,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -292,6 +423,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+
 				PRODUCT_BUNDLE_IDENTIFIER = icode.DesignSystem;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -300,19 +432,33 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+
+				PRODUCT_BUNDLE_IDENTIFIER = icode.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+ 
 				TARGETED_DEVICE_FAMILY = 1;
+
+				TARGETED_DEVICE_FAMILY = "1,2";
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
+
 		F1D67A942F9154C900039D1B /* Release */ = {
+
+		D7FFD0732F8EBB6500327536 /* Release */ = {
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -326,7 +472,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,6 +485,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+
 				PRODUCT_BUNDLE_IDENTIFIER = icode.DesignSystem;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -343,13 +494,23 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+
+				PRODUCT_BUNDLE_IDENTIFIER = icode.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+
 				TARGETED_DEVICE_FAMILY = 1;
+
+				TARGETED_DEVICE_FAMILY = "1,2";
+ d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -429,6 +590,7 @@
 		};
 		F40DD4C32F8D818D00D25F9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7FFD0772F8EBC7D00327536 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -480,7 +642,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -493,6 +655,7 @@
 		};
 		F40DD4C42F8D818D00D25F9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7FFD0772F8EBC7D00327536 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -538,7 +701,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -551,11 +714,19 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+
 		F1D67A922F9154C900039D1B /* Build configuration list for PBXNativeTarget "DesignSystem" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1D67A932F9154C900039D1B /* Debug */,
 				F1D67A942F9154C900039D1B /* Release */,
+
+		D7FFD0742F8EBB6500327536 /* Build configuration list for PBXNativeTarget "Networking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7FFD0722F8EBB6500327536 /* Debug */,
+				D7FFD0732F8EBB6500327536 /* Release */,
+d37b361 (chore(networking): scaffold target and wire credentials via xcconfig)
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
