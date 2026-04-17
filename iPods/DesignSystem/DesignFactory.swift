@@ -12,7 +12,7 @@ public final class DesignFactory {
     
     // MARK: - Labels
     
-    // Белый лейбл
+    // White label
     
     public static func makePrimaryLabel(text: String, size: CGFloat) -> UILabel {
         let label = UILabel()
@@ -24,8 +24,8 @@ public final class DesignFactory {
         return label
     }
     
-    // Серый  лейбл
-    
+    // Gray label
+
     public static func makeSecondaryLabel(text: String, size: CGFloat) -> UILabel {
         let label = UILabel()
         label.text = text
@@ -38,7 +38,8 @@ public final class DesignFactory {
     
     // MARK: - Buttons
         
-    // Желтая кнопка
+  //  Yellow button
+
     
         public static func makePrimaryButton(title: String) -> UIButton {
             let button = UIButton(type: .system)
