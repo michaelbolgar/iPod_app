@@ -6,21 +6,62 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		F1D67A8E2F9154C900039D1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1D67A872F9154C900039D1B;
+			remoteInfo = DesignSystem;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F1D67A792F91544E00039D1B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		F40DD4AD2F8D818C00D25F9E /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F19F804C2F923268007E4820 /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F19F804D2F923269007E4820 /* DesignSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F1D67A9C2F915EB700039D1B /* Exceptions for "DesignSystem" folder in "iPods" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppColor.swift,
+				DesignFactory.swift,
+				Font.swift,
+			);
+			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
+		};
 		F40DD4BF2F8D818D00D25F9E /* Exceptions for "iPods" folder in "iPods" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				info.plist,
 			);
 			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		F1D67A892F9154C900039D1B /* DesignSystem */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F1D67A9C2F915EB700039D1B /* Exceptions for "DesignSystem" folder in "iPods" target */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
 		F40DD4AF2F8D818C00D25F9E /* iPods */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -32,6 +73,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F1D67A852F9154C900039D1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F40DD4AA2F8D818C00D25F9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,21 +94,48 @@
 			isa = PBXGroup;
 			children = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
-				F40DD4AE2F8D818C00D25F9E /* Products */,
+				F1D67A892F9154C900039D1B /* DesignSystem */,
+				F19F804C2F923268007E4820 /* iPods.app */,
+				F19F804D2F923269007E4820 /* DesignSystem.framework */,
 			);
-			sourceTree = "<group>";
-		};
-		F40DD4AE2F8D818C00D25F9E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F40DD4AD2F8D818C00D25F9E /* iPods.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		F1D67A832F9154C900039D1B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		F1D67A872F9154C900039D1B /* DesignSystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1D67A922F9154C900039D1B /* Build configuration list for PBXNativeTarget "DesignSystem" */;
+			buildPhases = (
+				F1D67A832F9154C900039D1B /* Headers */,
+				F1D67A842F9154C900039D1B /* Sources */,
+				F1D67A852F9154C900039D1B /* Frameworks */,
+				F1D67A862F9154C900039D1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F1D67A892F9154C900039D1B /* DesignSystem */,
+			);
+			name = DesignSystem;
+			packageProductDependencies = (
+			);
+			productName = DesignSystem;
+			productReference = F19F804D2F923269007E4820 /* DesignSystem.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		F40DD4AC2F8D818C00D25F9E /* iPods */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F40DD4C02F8D818D00D25F9E /* Build configuration list for PBXNativeTarget "iPods" */;
@@ -68,10 +143,12 @@
 				F40DD4A92F8D818C00D25F9E /* Sources */,
 				F40DD4AA2F8D818C00D25F9E /* Frameworks */,
 				F40DD4AB2F8D818C00D25F9E /* Resources */,
+				F1D67A792F91544E00039D1B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F1D67A8F2F9154C900039D1B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
@@ -80,7 +157,7 @@
 			packageProductDependencies = (
 			);
 			productName = iPods;
-			productReference = F40DD4AD2F8D818C00D25F9E /* iPods.app */;
+			productReference = F19F804C2F923268007E4820 /* iPods.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -90,9 +167,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2640;
+				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
+					F1D67A872F9154C900039D1B = {
+						CreatedOnToolsVersion = 26.2;
+					};
 					F40DD4AC2F8D818C00D25F9E = {
 						CreatedOnToolsVersion = 26.4;
 					};
@@ -108,16 +188,24 @@
 			mainGroup = F40DD4A42F8D818C00D25F9E;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = F40DD4AE2F8D818C00D25F9E /* Products */;
+			productRefGroup = F40DD4A42F8D818C00D25F9E;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F40DD4AC2F8D818C00D25F9E /* iPods */,
+				F1D67A872F9154C900039D1B /* DesignSystem */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F1D67A862F9154C900039D1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F40DD4AB2F8D818C00D25F9E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +216,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F1D67A842F9154C900039D1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F40DD4A92F8D818C00D25F9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +232,101 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F1D67A8F2F9154C900039D1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1D67A872F9154C900039D1B /* DesignSystem */;
+			targetProxy = F1D67A8E2F9154C900039D1B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		F1D67A932F9154C900039D1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.DesignSystem;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F1D67A942F9154C900039D1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.DesignSystem;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		F40DD4C12F8D818D00D25F9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -334,6 +523,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F1D67A922F9154C900039D1B /* Build configuration list for PBXNativeTarget "DesignSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1D67A932F9154C900039D1B /* Debug */,
+				F1D67A942F9154C900039D1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F40DD4A82F8D818C00D25F9E /* Build configuration list for PBXProject "iPods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
