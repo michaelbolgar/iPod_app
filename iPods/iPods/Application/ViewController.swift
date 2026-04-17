@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import DesignSys
 
 class ViewController: UIViewController {
 
