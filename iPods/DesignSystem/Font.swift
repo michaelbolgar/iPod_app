@@ -54,7 +54,7 @@ public enum AppFonts {
     }
     
     
-    // Шрифты для использования:
+   //  Fonts to use:
     
     public static func primary(size: CGFloat) -> UIFont {                   // Bodoni 72 - Book
         return primary(.regular, size: size)

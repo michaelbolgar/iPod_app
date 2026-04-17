@@ -11,12 +11,12 @@ import UIKit
 
 public enum AppColor {
     
-    // Цвета для использования :
+    // Colors to use:
     
-    public static let primary = UIColor(hex: "#F59E0C")     // Жёлтый
-    public static let secondary = UIColor(hex: "#A3A3A3")  // Серый
-    public static let white = UIColor(hex: "#FFFFFF")     // Белый
-    public static let background = UIColor.black         // Чёрный
+    public static let primary = UIColor(hex: "#F59E0C")     // Yellow
+    public static let secondary = UIColor(hex: "#A3A3A3")  // Gray
+    public static let white = UIColor(hex: "#FFFFFF")     // White
+    public static let background = UIColor.black         // Black
     
 }
 

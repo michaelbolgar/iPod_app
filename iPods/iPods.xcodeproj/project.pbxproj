@@ -6,7 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F1BD6B8D2F92C06E0013DAD0 /* DesignSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19F804D2F923269007E4820 /* DesignSystem.framework */; };
+		F1BD6B8E2F92C06E0013DAD0 /* DesignSystem.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F19F804D2F923269007E4820 /* DesignSystem.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		F1BD6B8F2F92C06E0013DAD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1D67A872F9154C900039D1B;
+			remoteInfo = DesignSystem;
+		};
 		F1D67A8E2F9154C900039D1B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
@@ -23,6 +35,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F1BD6B8E2F92C06E0013DAD0 /* DesignSystem.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,12 +97,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1BD6B8D2F92C06E0013DAD0 /* DesignSystem.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F1BD6B8C2F92C06E0013DAD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F40DD4A42F8D818C00D25F9E = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +118,7 @@
 				F1D67A892F9154C900039D1B /* DesignSystem */,
 				F19F804C2F923268007E4820 /* iPods.app */,
 				F19F804D2F923269007E4820 /* DesignSystem.framework */,
+				F1BD6B8C2F92C06E0013DAD0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +171,7 @@
 			);
 			dependencies = (
 				F1D67A8F2F9154C900039D1B /* PBXTargetDependency */,
+				F1BD6B902F92C06E0013DAD0 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
@@ -233,6 +256,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F1BD6B902F92C06E0013DAD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1D67A872F9154C900039D1B /* DesignSystem */;
+			targetProxy = F1BD6B8F2F92C06E0013DAD0 /* PBXContainerItemProxy */;
+		};
 		F1D67A8F2F9154C900039D1B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F1D67A872F9154C900039D1B /* DesignSystem */;
