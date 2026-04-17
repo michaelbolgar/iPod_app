@@ -17,6 +17,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = AppColor.background
         setupView()
+        
+        startButton.addTarget(self, action: #selector(didTapStart), for: .touchUpInside)
+        
     }
 
     private func setupView() {
@@ -36,5 +39,10 @@ class ViewController: UIViewController {
             startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             startButton.heightAnchor.constraint(equalToConstant: 56)
         ])
+    }
+    
+    @objc private func didTapStart() {
+        let homeVC = HomeVC()
+        navigationController?.pushViewController(homeVC, animated: true)
     }
 }
