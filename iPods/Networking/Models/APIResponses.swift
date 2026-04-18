@@ -1,6 +1,6 @@
 import Foundation
 
-protocol APIResponse: Decodable, Sendable {
+protocol APIResponse: Decodable {
     var status: APIStatus { get }
     var failureMessage: String? { get }
 }
