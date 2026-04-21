@@ -34,26 +34,26 @@ final class HomeViewController: UIViewController, UISearchBarDelegate {
 
     // MARK: - Data
 
-    private let continueData: [Podcast] = [
-        Podcast(title: "The Creative Mind", author: "Sarah Johnson",
+    private let continueData: [PodcastFull] = [
+        PodcastFull(title: "The Creative Mind", author: "Sarah Johnson",
                 genre: "Arts", rating: 4.7, episodeCount: 89,
                 description: "Exploring creativity in all its forms.", progress: 0.6),
-        Podcast(title: "Deep Conversations", author: "Marcus Chen",
+        PodcastFull(title: "Deep Conversations", author: "Marcus Chen",
                 genre: "Society", rating: 4.5, episodeCount: 120,
                 description: "Meaningful dialogues with thought leaders.", progress: 0.3)
     ]
 
-    private let trendingData: [Podcast] = [
-        Podcast(title: "The Creative Mind", author: "Sarah Johnson",
+    private let trendingData: [PodcastFull] = [
+        PodcastFull(title: "The Creative Mind", author: "Sarah Johnson",
                 genre: "Arts", rating: 4.8, episodeCount: 89,
                 description: "", progress: 0),
-        Podcast(title: "Deep Conversations", author: "Marcus Chen",
+        PodcastFull(title: "Deep Conversations", author: "Marcus Chen",
                 genre: "Society", rating: 4.6, episodeCount: 120,
                 description: "", progress: 0),
-        Podcast(title: "The Science Hour", author: "Dr. James Park",
+        PodcastFull(title: "The Science Hour", author: "Dr. James Park",
                 genre: "Science", rating: 4.9, episodeCount: 156,
                 description: "", progress: 0),
-        Podcast(title: "Mind & Body", author: "Lisa Torres",
+        PodcastFull(title: "Mind & Body", author: "Lisa Torres",
                 genre: "Health", rating: 4.4, episodeCount: 74,
                 description: "", progress: 0)
     ]
@@ -142,7 +142,7 @@ private func makeSearchBar() -> UISearchBar {
 
     // MARK: - Mini Player
 
-    private func showMiniPlayer(with podcast: Podcast) {
+    private func showMiniPlayer(with podcast: PodcastFull) {
         miniPlayer.configure(with: podcast)
         miniPlayer.isHidden = false
         miniPlayerBottom.constant = -8

@@ -12,7 +12,7 @@ final class DetailsViewController: UIViewController {
 
     // MARK: - Data
 
-    private let podcast: Podcast
+    private let podcast: PodcastFull
 
     // MARK: - UI
 
@@ -59,7 +59,7 @@ final class DetailsViewController: UIViewController {
 
     // MARK: - Init
 
-    init(podcast: Podcast) {
+    init(podcast: PodcastFull) {
         self.podcast = podcast
         super.init(nibName: nil, bundle: nil)
     }

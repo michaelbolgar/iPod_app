@@ -6,7 +6,7 @@
 //
 
 import UIKit
-struct Podcast {
+struct PodcastFull {
     let title: String
     let author: String
     let genre: String

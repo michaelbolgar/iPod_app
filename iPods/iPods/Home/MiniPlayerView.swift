@@ -82,7 +82,7 @@ final class MiniPlayerView: UIView {
         onPlay?()
     }
 
-    func configure(with podcast: Podcast) {
+    func configure(with podcast: PodcastFull) {
         titleLabel.text = podcast.title
         authorLabel.text = podcast.author
         progressBar.progress = podcast.progress
