@@ -249,8 +249,4 @@ func tableView(_ tableView: UITableView,
         }
     }
 }
-//=======
-///import UIKit
 
-///final class HomeVC {}
-///>>>>>>> 2170575 (added project base)
