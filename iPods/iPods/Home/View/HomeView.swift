@@ -50,7 +50,8 @@ final class HomeView: UIView {
         let tv = UITableView()
         tv.backgroundColor = .clear
         tv.separatorStyle = .none
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: "HistoryCell")
+        tv.register(SearchHistoryCell.self, forCellReuseIdentifier: SearchHistoryCell.reuseID)
+        tv.register(SearchHistoryHeaderCell.self, forCellReuseIdentifier: SearchHistoryHeaderCell.reuseID)
         tv.isHidden = true
         tv.keyboardDismissMode = .onDrag
         return tv
