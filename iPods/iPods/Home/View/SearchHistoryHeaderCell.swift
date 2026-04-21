@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import DesignSys
 
 final class SearchHistoryHeaderCell: UITableViewCell {
     static let reuseID = "SearchHistoryHeaderCell"

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import DesignSys
 
 final class SearchResultCell: UITableViewCell {
     static let reuseID = "SearchResultCell"

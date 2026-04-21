@@ -194,8 +194,9 @@ extension HomeVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView === homeView.resultsTableView {
-            let detailsVC = DetailsVC()
-            navigationController?.pushViewController(detailsVC, animated: true)
+//            let detailsVC = DetailsVC()
+//            navigationController?.pushViewController(detailsVC, animated: true)
+            print("push details")
         } else if tableView === homeView.historyTableView && indexPath.row > 0 {
             let query = searchHistory[indexPath.row - 1]
             homeView.searchBar.text = query
