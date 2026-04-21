@@ -7,11 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A9888E22F91150C0024CC63 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2A9888E12F91150C0024CC63 /* SnapKit */; };
+		D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
+		D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; };
+		F4AF36912F92F73B00BD1678 /* DesignSys.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D7FFD06D2F8EBB6500327536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7FFD0662F8EBB6500327536;
+			remoteInfo = Networking;
+		};
+		F4AF368E2F92F73B00BD1678 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4AF367C2F92F73B00BD1678;
+			remoteInfo = DesignSys;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D7FFD0712F8EBB6500327536 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F4AF36912F92F73B00BD1678 /* DesignSys.framework in Embed Frameworks */,
+				D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D7FFD0672F8EBB6500327536 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40DD4AD2F8D818C00D25F9E /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4AF367D2F92F73B00BD1678 /* DesignSys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -25,6 +62,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		D7FFD0682F8EBB6500327536 /* Networking */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		F40DD4AF2F8D818C00D25F9E /* iPods */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -33,14 +75,34 @@
 			path = iPods;
 			sourceTree = "<group>";
 		};
+		F4AF367E2F92F73B00BD1678 /* DesignSys */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DesignSys;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D7FFD0642F8EBB6500327536 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F40DD4AA2F8D818C00D25F9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A9888E22F91150C0024CC63 /* SnapKit in Frameworks */,
+				F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */,
+				D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4AF367A2F92F73B00BD1678 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
+				D7FFD0682F8EBB6500327536 /* Networking */,
+				F4AF367E2F92F73B00BD1678 /* DesignSys */,
 				F40DD4AE2F8D818C00D25F9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,13 +123,55 @@
 			isa = PBXGroup;
 			children = (
 				F40DD4AD2F8D818C00D25F9E /* iPods.app */,
+				D7FFD0672F8EBB6500327536 /* Networking.framework */,
+				F4AF367D2F92F73B00BD1678 /* DesignSys.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		D7FFD0622F8EBB6500327536 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4AF36782F92F73B00BD1678 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		D7FFD0662F8EBB6500327536 /* Networking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7FFD0742F8EBB6500327536 /* Build configuration list for PBXNativeTarget "Networking" */;
+			buildPhases = (
+				D7FFD0622F8EBB6500327536 /* Headers */,
+				D7FFD0632F8EBB6500327536 /* Sources */,
+				D7FFD0642F8EBB6500327536 /* Frameworks */,
+				D7FFD0652F8EBB6500327536 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D7FFD0682F8EBB6500327536 /* Networking */,
+			);
+			name = Networking;
+			packageProductDependencies = (
+			);
+			productName = Networking;
+			productReference = D7FFD0672F8EBB6500327536 /* Networking.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		F40DD4AC2F8D818C00D25F9E /* iPods */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F40DD4C02F8D818D00D25F9E /* Build configuration list for PBXNativeTarget "iPods" */;
@@ -73,21 +179,46 @@
 				F40DD4A92F8D818C00D25F9E /* Sources */,
 				F40DD4AA2F8D818C00D25F9E /* Frameworks */,
 				F40DD4AB2F8D818C00D25F9E /* Resources */,
+				D7FFD0712F8EBB6500327536 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */,
+				F4AF368F2F92F73B00BD1678 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
 			);
 			name = iPods;
 			packageProductDependencies = (
-				2A9888E12F91150C0024CC63 /* SnapKit */,
 			);
 			productName = iPods;
 			productReference = F40DD4AD2F8D818C00D25F9E /* iPods.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F4AF367C2F92F73B00BD1678 /* DesignSys */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4AF36962F92F73B00BD1678 /* Build configuration list for PBXNativeTarget "DesignSys" */;
+			buildPhases = (
+				F4AF36782F92F73B00BD1678 /* Headers */,
+				F4AF36792F92F73B00BD1678 /* Sources */,
+				F4AF367A2F92F73B00BD1678 /* Frameworks */,
+				F4AF367B2F92F73B00BD1678 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F4AF367E2F92F73B00BD1678 /* DesignSys */,
+			);
+			name = DesignSys;
+			packageProductDependencies = (
+			);
+			productName = DesignSys;
+			productReference = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -99,8 +230,14 @@
 				LastSwiftUpdateCheck = 2640;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
+					D7FFD0662F8EBB6500327536 = {
+						CreatedOnToolsVersion = 26.3;
+					};
 					F40DD4AC2F8D818C00D25F9E = {
 						CreatedOnToolsVersion = 26.4;
+					};
+					F4AF367C2F92F73B00BD1678 = {
+						CreatedOnToolsVersion = 26.4.1;
 					};
 				};
 			};
@@ -113,21 +250,34 @@
 			);
 			mainGroup = F40DD4A42F8D818C00D25F9E;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				2A9888E02F91150C0024CC63 /* XCRemoteSwiftPackageReference "SnapKit" */,
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F40DD4AE2F8D818C00D25F9E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F40DD4AC2F8D818C00D25F9E /* iPods */,
+				D7FFD0662F8EBB6500327536 /* Networking */,
+				F4AF367C2F92F73B00BD1678 /* DesignSys */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D7FFD0652F8EBB6500327536 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F40DD4AB2F8D818C00D25F9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4AF367B2F92F73B00BD1678 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -137,7 +287,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D7FFD0632F8EBB6500327536 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F40DD4A92F8D818C00D25F9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4AF36792F92F73B00BD1678 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -146,7 +310,98 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7FFD0662F8EBB6500327536 /* Networking */;
+			targetProxy = D7FFD06D2F8EBB6500327536 /* PBXContainerItemProxy */;
+		};
+		F4AF368F2F92F73B00BD1678 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4AF367C2F92F73B00BD1678 /* DesignSys */;
+			targetProxy = F4AF368E2F92F73B00BD1678 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D7FFD0722F8EBB6500327536 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D7FFD0732F8EBB6500327536 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		F40DD4C12F8D818D00D25F9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -272,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -330,7 +585,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -340,9 +595,104 @@
 			};
 			name = Release;
 		};
+		F4AF36922F92F73B00BD1678 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.DesignSys;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F4AF36932F92F73B00BD1678 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.DesignSys;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D7FFD0742F8EBB6500327536 /* Build configuration list for PBXNativeTarget "Networking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7FFD0722F8EBB6500327536 /* Debug */,
+				D7FFD0732F8EBB6500327536 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F40DD4A82F8D818C00D25F9E /* Build configuration list for PBXProject "iPods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -361,26 +711,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F4AF36962F92F73B00BD1678 /* Build configuration list for PBXNativeTarget "DesignSys" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4AF36922F92F73B00BD1678 /* Debug */,
+				F4AF36932F92F73B00BD1678 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		2A9888E02F91150C0024CC63 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2A9888E12F91150C0024CC63 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2A9888E02F91150C0024CC63 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F40DD4A52F8D818C00D25F9E /* Project object */;
 }

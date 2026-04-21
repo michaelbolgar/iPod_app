@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import DesignSys
 
 class ViewController: UIViewController {
 
-    private let titleLabel = DesignFactory.makePrimaryLabel(text: "Hello, team", size: 24)
-    private let subtitleLabel = DesignFactory.makeSecondaryLabel(text: "Let's code this app", size: 14)
-    private let startButton = DesignFactory.makePrimaryButton(title: "Play Now")
+    private let titleLabel = DesignFactory.makePrimaryLabel(text: "Welcome to Podcast", size: 24)
+    private let subtitleLabel = DesignFactory.makeSecondaryLabel(text: "Discover, listen, and explore thousands", size: 14)
+    private let startButton = DesignFactory.makePrimaryButton(title: "Get Started")
 
     override func viewDidLoad() {
         super.viewDidLoad()
