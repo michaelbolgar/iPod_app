@@ -98,12 +98,12 @@ final class PodcastServiceTests: XCTestCase {
     // MARK: - Helpers
 
     private func makePodcast(id: Int, title: String) throws -> Podcast {
-        let json = "{\"id\":\(id),\"title\":\"\(title)\"}".data(using: .utf8)!
-        return try JSONDecoder().decode(Podcast.self, from: json)
+        let data = try JSONSerialization.data(withJSONObject: ["id": id, "title": title])
+        return try JSONDecoder().decode(Podcast.self, from: data)
     }
 
     private func makeEpisode(id: Int, title: String) throws -> Episode {
-        let json = "{\"id\":\(id),\"title\":\"\(title)\",\"feedId\":0}".data(using: .utf8)!
-        return try JSONDecoder().decode(Episode.self, from: json)
+        let data = try JSONSerialization.data(withJSONObject: ["id": id, "title": title, "feedId": 0])
+        return try JSONDecoder().decode(Episode.self, from: data)
     }
 }
