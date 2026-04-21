@@ -11,6 +11,7 @@
 		D7FFAB502F94AAAB003BAE33 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F4ACAFE02F981BC8003E8500 /* SnapKit */; };
 		F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; };
 		F4AF36912F92F73B00BD1678 /* DesignSys.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -122,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */,
 				F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */,
 				D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */,
 			);
@@ -165,6 +167,13 @@
 				D7FFAAD72F94A701003BAE33 /* NetworkingTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F4ACAFDF2F981BC8003E8500 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +264,7 @@
 			);
 			name = iPods;
 			packageProductDependencies = (
+				F4ACAFE02F981BC8003E8500 /* SnapKit */,
 			);
 			productName = iPods;
 			productReference = F40DD4AD2F8D818C00D25F9E /* iPods.app */;
@@ -317,6 +327,9 @@
 			);
 			mainGroup = F40DD4A42F8D818C00D25F9E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F4ACAFDE2F981BC2003E8500 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F40DD4AE2F8D818C00D25F9E /* Products */;
 			projectDirPath = "";
@@ -862,6 +875,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F4ACAFDE2F981BC2003E8500 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F4ACAFE02F981BC8003E8500 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4ACAFDE2F981BC2003E8500 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F40DD4A52F8D818C00D25F9E /* Project object */;
 }
