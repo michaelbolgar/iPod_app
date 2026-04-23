@@ -10,22 +10,9 @@
 		F40DD4AD2F8D818C00D25F9E /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F40DD4BF2F8D818D00D25F9E /* Exceptions for "iPods" folder in "iPods" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F40DD4AF2F8D818C00D25F9E /* iPods */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				F40DD4BF2F8D818D00D25F9E /* Exceptions for "iPods" folder in "iPods" target */,
-			);
 			path = iPods;
 			sourceTree = "<group>";
 		};
