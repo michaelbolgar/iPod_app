@@ -48,6 +48,10 @@ struct EpisodesResponse: APIResponse {
 struct APIStatus: Decodable {
     let isOK: Bool
 
+    init(isOK: Bool) {
+        self.isOK = isOK
+    }
+
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let bool = try? container.decode(Bool.self) {
