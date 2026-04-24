@@ -3,10 +3,6 @@
 
 //final class HomeVC {}
 
-
-
-
-
 import UIKit
 
 final class HomeViewController: UIViewController, UISearchBarDelegate {

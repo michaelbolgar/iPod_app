@@ -10,6 +10,8 @@
 		D7AA000A2F9AA70000000001 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F11F5AED2F9B9BD400FD3E90 /* ListeningData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */; };
+		F11F5AEE2F9B9BD400FD3E90 /* ListeningData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F4ACAFE02F981BC8003E8500 /* SnapKit */; };
 		F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; };
 		F4AF36912F92F73B00BD1678 /* DesignSys.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -30,6 +32,13 @@
 			remoteGlobalIDString = D7FFD0662F8EBB6500327536;
 			remoteInfo = Networking;
 		};
+		F11F5AEB2F9B9BD400FD3E90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F11F5AE42F9B9BD400FD3E90;
+			remoteInfo = ListeningData;
+		};
 		F4AF368E2F92F73B00BD1678 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
@@ -47,6 +56,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F4AF36912F92F73B00BD1678 /* DesignSys.framework in Embed Frameworks */,
+				F11F5AEE2F9B9BD400FD3E90 /* ListeningData.framework in Embed Frameworks */,
 				D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -57,6 +67,7 @@
 /* Begin PBXFileReference section */
 		D7AA00012F9AA70000000003 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFD0672F8EBB6500327536 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ListeningData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40DD4AD2F8D818C00D25F9E /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AF367D2F92F73B00BD1678 /* DesignSys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,6 +91,11 @@
 		D7FFD0682F8EBB6500327536 /* Networking */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		F11F5AE62F9B9BD400FD3E90 /* ListeningData */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ListeningData;
 			sourceTree = "<group>";
 		};
 		F40DD4AF2F8D818C00D25F9E /* iPods */ = {
@@ -113,12 +129,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F11F5AE22F9B9BD400FD3E90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F40DD4AA2F8D818C00D25F9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */,
 				F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */,
+				F11F5AED2F9B9BD400FD3E90 /* ListeningData.framework in Frameworks */,
 				D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +164,7 @@
 				D7FFD0682F8EBB6500327536 /* Networking */,
 				D7AA00022F9AA70000000004 /* NetworkingTests */,
 				F4AF367E2F92F73B00BD1678 /* DesignSys */,
+				F11F5AE62F9B9BD400FD3E90 /* ListeningData */,
 				D7FFAAD82F94A701003BAE33 /* NetworkingTests */,
 				D7FFAB4E2F94AAAB003BAE33 /* Frameworks */,
 				F40DD4AE2F8D818C00D25F9E /* Products */,
@@ -153,6 +178,7 @@
 				D7FFD0672F8EBB6500327536 /* Networking.framework */,
 				D7AA00012F9AA70000000003 /* NetworkingTests.xctest */,
 				F4AF367D2F92F73B00BD1678 /* DesignSys.framework */,
+				F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +194,13 @@
 
 /* Begin PBXHeadersBuildPhase section */
 		D7FFD0622F8EBB6500327536 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F11F5AE02F9B9BD400FD3E90 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -230,6 +263,29 @@
 			productReference = D7FFD0672F8EBB6500327536 /* Networking.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F11F5AE42F9B9BD400FD3E90 /* ListeningData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F11F5AEF2F9B9BD400FD3E90 /* Build configuration list for PBXNativeTarget "ListeningData" */;
+			buildPhases = (
+				F11F5AE02F9B9BD400FD3E90 /* Headers */,
+				F11F5AE12F9B9BD400FD3E90 /* Sources */,
+				F11F5AE22F9B9BD400FD3E90 /* Frameworks */,
+				F11F5AE32F9B9BD400FD3E90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F11F5AE62F9B9BD400FD3E90 /* ListeningData */,
+			);
+			name = ListeningData;
+			packageProductDependencies = (
+			);
+			productName = ListeningData;
+			productReference = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		F40DD4AC2F8D818C00D25F9E /* iPods */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F40DD4C02F8D818D00D25F9E /* Build configuration list for PBXNativeTarget "iPods" */;
@@ -244,6 +300,7 @@
 			dependencies = (
 				D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */,
 				F4AF368F2F92F73B00BD1678 /* PBXTargetDependency */,
+				F11F5AEC2F9B9BD400FD3E90 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
@@ -286,7 +343,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2640;
+				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					D7AA00032F9AA70000000006 = {
@@ -295,6 +352,9 @@
 					};
 					D7FFD0662F8EBB6500327536 = {
 						CreatedOnToolsVersion = 26.3;
+					};
+					F11F5AE42F9B9BD400FD3E90 = {
+						CreatedOnToolsVersion = 26.2;
 					};
 					F40DD4AC2F8D818C00D25F9E = {
 						CreatedOnToolsVersion = 26.4;
@@ -325,6 +385,7 @@
 				D7FFD0662F8EBB6500327536 /* Networking */,
 				D7AA00032F9AA70000000006 /* NetworkingTests */,
 				F4AF367C2F92F73B00BD1678 /* DesignSys */,
+				F11F5AE42F9B9BD400FD3E90 /* ListeningData */,
 			);
 		};
 /* End PBXProject section */
@@ -338,6 +399,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D7FFD0652F8EBB6500327536 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F11F5AE32F9B9BD400FD3E90 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,6 +443,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F11F5AE12F9B9BD400FD3E90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F40DD4A92F8D818C00D25F9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +476,11 @@
 			isa = PBXTargetDependency;
 			target = D7FFD0662F8EBB6500327536 /* Networking */;
 			targetProxy = D7FFD06D2F8EBB6500327536 /* PBXContainerItemProxy */;
+		};
+		F11F5AEC2F9B9BD400FD3E90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F11F5AE42F9B9BD400FD3E90 /* ListeningData */;
+			targetProxy = F11F5AEB2F9B9BD400FD3E90 /* PBXContainerItemProxy */;
 		};
 		F4AF368F2F92F73B00BD1678 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -475,7 +555,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -522,7 +602,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -544,6 +624,94 @@
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = icode.networking;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F11F5AF02F9B9BD400FD3E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.ListeningData;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F11F5AF12F9B9BD400FD3E90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.ListeningData;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -767,7 +935,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -776,7 +944,7 @@
 				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -811,7 +979,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -820,7 +988,7 @@
 				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -866,6 +1034,15 @@
 			buildConfigurations = (
 				D7FFD0722F8EBB6500327536 /* Debug */,
 				D7FFD0732F8EBB6500327536 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F11F5AEF2F9B9BD400FD3E90 /* Build configuration list for PBXNativeTarget "ListeningData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F11F5AF02F9B9BD400FD3E90 /* Debug */,
+				F11F5AF12F9B9BD400FD3E90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
