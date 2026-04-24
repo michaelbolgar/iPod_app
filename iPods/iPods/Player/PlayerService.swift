@@ -79,6 +79,8 @@ final class PlayerService {
     
     func play() {
         configureAudioSession()
+#warning("попробуйте тут вызывать setActive(true), а не configureAudioSession(). Есть подозрение, что ваш способ будет расходовать слишком много ресурсов")
+
         player?.play()
         onPlaybackStateChanged?(true)
     }
@@ -169,17 +171,17 @@ final class PlayerService {
             
             let current = time.seconds.isFinite ? time.seconds : 0
             let total = self.player?.currentItem?.duration.seconds.isFinite == true
-
+            
             ? self.player?.currentItem?.duration.seconds ?? 0
-                            : 0
-                        
-                        self.onProgressChanged?(current, total)
-                    }
-                }
-                
-                private func removeObserver() {
-                    guard let token = timeObserverToken else { return }
-                    player?.removeTimeObserver(token)
-                    timeObserverToken = nil
-                }
-            }
+            : 0
+            
+            self.onProgressChanged?(current, total)
+        }
+    }
+    
+    private func removeObserver() {
+        guard let token = timeObserverToken else { return }
+        player?.removeTimeObserver(token)
+        timeObserverToken = nil
+    }
+}

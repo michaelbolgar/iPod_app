@@ -8,8 +8,10 @@
 import UIKit
 import Networking
 
+#warning("у вас файл называется ViewController, а по факту это UIView. Надо привести к одному виду")
 final class PlayerControlsView: UIView {
 
+#warning("а в дизайн системе нет этого цвета? если нет, надо его туда перенести")
     private let primaryOrange = UIColor(named: "PrimaryOrange") ?? UIColor(
         red: 245 / 255,
         green: 158 / 255,
@@ -100,6 +102,7 @@ final class PlayerControlsView: UIView {
     private func setupUI() {
         backgroundColor = .clear
 
+        #warning("это можно сократить, добавив в массив + forEach")
         addSubview(progressSlider)
         addSubview(currentTimeLabel)
         addSubview(durationLabel)

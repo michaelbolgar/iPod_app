@@ -59,6 +59,7 @@ public class ListeningService {
         let newSearch = SearchHistory(context: context)
         newSearch.query = query
         newSearch.timestamp = Date()
+        #warning("тут будут дублироваться одинаковые запросы. Лучше проверять, нет ли такой записи, и обновлять timestamp в случае успеха")
         CoreDataStack.shared.saveContext()
     }
     
