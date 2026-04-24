@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class HomeVC: UIViewController {
+final class HomeVC_Matin: UIViewController {
 
     private var homeView: HomeView { view as! HomeView }
 
@@ -116,7 +116,7 @@ final class HomeVC: UIViewController {
 }
 
 // MARK: - UISearchBarDelegate
-extension HomeVC: UISearchBarDelegate {
+extension HomeVC_Matin: UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
@@ -144,7 +144,7 @@ extension HomeVC: UISearchBarDelegate {
 }
 
 // MARK: - UITableViewDataSource
-extension HomeVC: UITableViewDataSource {
+extension HomeVC_Matin: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView === homeView.resultsTableView {
@@ -183,7 +183,7 @@ extension HomeVC: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension HomeVC: UITableViewDelegate {
+extension HomeVC_Matin: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView === homeView.historyTableView && indexPath.row == 0 {
