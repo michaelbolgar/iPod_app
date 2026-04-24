@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController, UISearchBarDelegate {
+final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
 
     // MARK: - Sections
 
@@ -155,7 +155,7 @@ private func makeSearchBar() -> UISearchBar {
 
 // MARK: - UITableViewDataSource & Delegate
 
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         Section.allCases.count

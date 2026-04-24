@@ -165,8 +165,6 @@
 				D7AA00022F9AA70000000004 /* NetworkingTests */,
 				F4AF367E2F92F73B00BD1678 /* DesignSys */,
 				F11F5AE62F9B9BD400FD3E90 /* ListeningData */,
-				D7FFAAD82F94A701003BAE33 /* NetworkingTests */,
-				D7FFAB4E2F94AAAB003BAE33 /* Frameworks */,
 				F40DD4AE2F8D818C00D25F9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -181,13 +179,6 @@
 				F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F4ACAFDF2F981BC8003E8500 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

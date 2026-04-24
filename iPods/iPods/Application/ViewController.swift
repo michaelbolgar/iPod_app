@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTapStart() {
-        let homeVC = HomeVC()
+        let homeVC = HomeVC_Matin()
         navigationController?.pushViewController(homeVC, animated: true)
     }
 }
