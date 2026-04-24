@@ -1,4 +1,14 @@
 # Xcode
+<<<<<<< HEAD
+
+# User settings
+xcuserdata/
+
+# Obj-C/Swift specific
+*.hmap
+
+# App packaging
+=======
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
@@ -9,16 +19,29 @@ xcuserdata/
 *.hmap
 
 ## App packaging
+>>>>>>> origin/dev
 *.ipa
 *.dSYM.zip
 *.dSYM
 .DS_Store
 
+<<<<<<< HEAD
+# Playgrounds
+=======
 ## Playgrounds
+>>>>>>> origin/dev
 timeline.xctimeline
 playground.xcworkspace
 
 # Swift Package Manager
+<<<<<<< HEAD
+.build/
+
+# CocoaPods
+Carthage/Build/
+
+# fastlane
+=======
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
 # Packages/
@@ -57,7 +80,11 @@ Carthage/Build/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
+>>>>>>> origin/dev
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# API Keys
+Secrets.xcconfig
