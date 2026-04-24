@@ -5,8 +5,8 @@
 //  Created by Михаил Болгар on 13.04.2026.
 //
 
-import UIKit
 import DesignSys
+import UIKit
 
 class ViewController: UIViewController {
 
