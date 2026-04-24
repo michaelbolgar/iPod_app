@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D7FFAB4F2F94AAAB003BAE33 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
-		D7FFAB502F94AAAB003BAE33 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D7AA000A2F9AA70000000001 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F4ACAFE02F981BC8003E8500 /* SnapKit */; };
@@ -17,14 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D7FFAADB2F94A701003BAE33 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F40DD4AC2F8D818C00D25F9E;
-			remoteInfo = iPods;
-		};
-		D7FFAB512F94AAAB003BAE33 /* PBXContainerItemProxy */ = {
+		D7AA000B2F9AA70000000002 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
 			proxyType = 1;
@@ -48,17 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D7FFAB532F94AAAB003BAE33 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D7FFAB502F94AAAB003BAE33 /* Networking.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D7FFD0712F8EBB6500327536 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,14 +55,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D7FFAAD72F94A701003BAE33 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7AA00012F9AA70000000003 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFD0672F8EBB6500327536 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40DD4AD2F8D818C00D25F9E /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AF367D2F92F73B00BD1678 /* DesignSys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D7FFAAD82F94A701003BAE33 /* NetworkingTests */ = {
+		D7AA00022F9AA70000000004 /* NetworkingTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = NetworkingTests;
 			sourceTree = "<group>";
@@ -104,11 +85,11 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D7FFAAD42F94A701003BAE33 /* Frameworks */ = {
+		D7AA00052F9AA70000000005 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7FFAB4F2F94AAAB003BAE33 /* Networking.framework in Frameworks */,
+				D7AA000A2F9AA70000000001 /* Networking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,18 +120,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D7FFAB4E2F94AAAB003BAE33 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F40DD4A42F8D818C00D25F9E = {
 			isa = PBXGroup;
 			children = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
 				D7FFD0682F8EBB6500327536 /* Networking */,
+				D7AA00022F9AA70000000004 /* NetworkingTests */,
 				F4AF367E2F92F73B00BD1678 /* DesignSys */,
 				D7FFAAD82F94A701003BAE33 /* NetworkingTests */,
 				D7FFAB4E2F94AAAB003BAE33 /* Frameworks */,
@@ -163,8 +138,8 @@
 			children = (
 				F40DD4AD2F8D818C00D25F9E /* iPods.app */,
 				D7FFD0672F8EBB6500327536 /* Networking.framework */,
+				D7AA00012F9AA70000000003 /* NetworkingTests.xctest */,
 				F4AF367D2F92F73B00BD1678 /* DesignSys.framework */,
-				D7FFAAD72F94A701003BAE33 /* NetworkingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,29 +171,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D7FFAAD62F94A701003BAE33 /* NetworkingTests */ = {
+		D7AA00032F9AA70000000006 /* NetworkingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D7FFAADF2F94A701003BAE33 /* Build configuration list for PBXNativeTarget "NetworkingTests" */;
+			buildConfigurationList = D7AA00092F9AA70000000009 /* Build configuration list for PBXNativeTarget "NetworkingTests" */;
 			buildPhases = (
-				D7FFAAD32F94A701003BAE33 /* Sources */,
-				D7FFAAD42F94A701003BAE33 /* Frameworks */,
-				D7FFAAD52F94A701003BAE33 /* Resources */,
-				D7FFAB532F94AAAB003BAE33 /* Embed Frameworks */,
+				D7AA00042F9AA70000000007 /* Sources */,
+				D7AA00052F9AA70000000005 /* Frameworks */,
+				D7AA00062F9AA70000000008 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D7FFAADC2F94A701003BAE33 /* PBXTargetDependency */,
-				D7FFAB522F94AAAB003BAE33 /* PBXTargetDependency */,
+				D7AA000C2F9AA7000000000C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				D7FFAAD82F94A701003BAE33 /* NetworkingTests */,
+				D7AA00022F9AA70000000004 /* NetworkingTests */,
 			);
 			name = NetworkingTests;
 			packageProductDependencies = (
 			);
 			productName = NetworkingTests;
-			productReference = D7FFAAD72F94A701003BAE33 /* NetworkingTests.xctest */;
+			productReference = D7AA00012F9AA70000000003 /* NetworkingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		D7FFD0662F8EBB6500327536 /* Networking */ = {
@@ -300,12 +273,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2630;
+				LastSwiftUpdateCheck = 2640;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
-					D7FFAAD62F94A701003BAE33 = {
+					D7AA00032F9AA70000000006 = {
 						CreatedOnToolsVersion = 26.3;
-						TestTargetID = F40DD4AC2F8D818C00D25F9E;
+						TestTargetID = D7FFD0662F8EBB6500327536;
 					};
 					D7FFD0662F8EBB6500327536 = {
 						CreatedOnToolsVersion = 26.3;
@@ -337,14 +310,14 @@
 			targets = (
 				F40DD4AC2F8D818C00D25F9E /* iPods */,
 				D7FFD0662F8EBB6500327536 /* Networking */,
+				D7AA00032F9AA70000000006 /* NetworkingTests */,
 				F4AF367C2F92F73B00BD1678 /* DesignSys */,
-				D7FFAAD62F94A701003BAE33 /* NetworkingTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D7FFAAD52F94A701003BAE33 /* Resources */ = {
+		D7AA00062F9AA70000000008 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,7 +348,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D7FFAAD32F94A701003BAE33 /* Sources */ = {
+		D7AA00042F9AA70000000007 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -406,15 +379,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D7FFAADC2F94A701003BAE33 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
-			targetProxy = D7FFAADB2F94A701003BAE33 /* PBXContainerItemProxy */;
-		};
-		D7FFAB522F94AAAB003BAE33 /* PBXTargetDependency */ = {
+		D7AA000C2F9AA7000000000C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D7FFD0662F8EBB6500327536 /* Networking */;
-			targetProxy = D7FFAB512F94AAAB003BAE33 /* PBXContainerItemProxy */;
+			targetProxy = D7AA000B2F9AA70000000002 /* PBXContainerItemProxy */;
 		};
 		D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -429,18 +397,27 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		D7FFAADD2F94A701003BAE33 /* Debug */ = {
+		D7AA00072F9AA70000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8K8L96B2DM;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sabrina.com.NetworkingTests;
+				PRODUCT_BUNDLE_IDENTIFIER = icode.NetworkingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
@@ -449,18 +426,27 @@
 			};
 			name = Debug;
 		};
-		D7FFAADE2F94A701003BAE33 /* Release */ = {
+		D7AA00082F9AA70000000008 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8K8L96B2DM;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sabrina.com.NetworkingTests;
+				PRODUCT_BUNDLE_IDENTIFIER = icode.NetworkingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
@@ -555,12 +541,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87P7GYW9VY;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iPods/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -591,12 +572,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87P7GYW9VY;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iPods/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -829,11 +805,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D7FFAADF2F94A701003BAE33 /* Build configuration list for PBXNativeTarget "NetworkingTests" */ = {
+		D7AA00092F9AA70000000009 /* Build configuration list for PBXNativeTarget "NetworkingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D7FFAADD2F94A701003BAE33 /* Debug */,
-				D7FFAADE2F94A701003BAE33 /* Release */,
+				D7AA00072F9AA70000000007 /* Debug */,
+				D7AA00082F9AA70000000008 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
