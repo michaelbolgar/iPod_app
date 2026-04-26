@@ -28,13 +28,15 @@ final class HomeViewController: UIViewController, UISearchBarDelegate {
 
     // MARK: - UI
 
-    private let tableView = UITableView(frame: .zero, style: .plain)
+    let tableView = UITableView(frame: .zero, style: .plain)
     private let miniPlayer = MiniPlayerView()
     private var miniPlayerBottom: NSLayoutConstraint!
+    var filteredPodcasts: [PodcastFull] = []
+    var searchHistory: [String] = []
 
     // MARK: - Data
 
-    private let continueData: [PodcastFull] = [
+    let continueData: [PodcastFull] = [
         PodcastFull(title: "The Creative Mind", author: "Sarah Johnson",
                 genre: "Arts", rating: 4.7, episodeCount: 89,
                 description: "Exploring creativity in all its forms.", progress: 0.6),
@@ -43,7 +45,7 @@ final class HomeViewController: UIViewController, UISearchBarDelegate {
                 description: "Meaningful dialogues with thought leaders.", progress: 0.3)
     ]
 
-    private let trendingData: [PodcastFull] = [
+    let trendingData: [PodcastFull] = [
         PodcastFull(title: "The Creative Mind", author: "Sarah Johnson",
                 genre: "Arts", rating: 4.8, episodeCount: 89,
                 description: "", progress: 0),
@@ -66,6 +68,8 @@ final class HomeViewController: UIViewController, UISearchBarDelegate {
         setupNavigationBar()
         setupTableView()
         setupMiniPlayer()
+        setupSearchViews()
+        
     }
 
     // MARK: - Setup
@@ -165,8 +169,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         Section.allCases.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView === resultsTableView || tableView === historyTableView {
+            return numberOfRows(in: tableView)
+        }
         guard let section = Section(rawValue: section) else { return 0 }
         switch section {
         case .continueListening: return continueData.count
@@ -174,24 +180,23 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView === resultsTableView || tableView === historyTableView {
+            return searchCell(for: tableView, at: indexPath)
+        }
         guard let section = Section(rawValue: indexPath.section) else {
             return UITableViewCell()
         }
-
         switch section {
         case .continueListening:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: ContinueCell.reuseID, for: indexPath) as! ContinueCell
             cell.configure(with: continueData[indexPath.row])
             return cell
-
         case .trending:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: TrendingCell.reuseID, for: indexPath) as! TrendingCell
             cell.configure(with: trendingData)
-            //тап по карточке внутри Trending
             cell.onSelect = { [weak self] index in
                 guard let self, index < self.trendingData.count else { return }
                 let podcast = self.trendingData[index]
@@ -231,21 +236,21 @@ func tableView(_ tableView: UITableView,
         Layout.headerHeight
     }
 
-    func tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView === resultsTableView || tableView === historyTableView {
+            searchDidSelect(in: tableView, at: indexPath)
+            return
+        }
         tableView.deselectRow(at: indexPath, animated: true)
-
         guard let section = Section(rawValue: indexPath.section) else { return }
-
         switch section {
         case .continueListening:
             let podcast = continueData[indexPath.row]
             showMiniPlayer(with: podcast)
             let vc = DetailsViewController(podcast: podcast)
             navigationController?.pushViewController(vc, animated: true)
-
         case .trending:
-            break 
+            break
         }
     }
 }
