@@ -58,7 +58,7 @@ final class TrendingItemCell: UICollectionViewCell {
         ])
     }
 
-    func configure(with podcast: Podcast) {
+    func configure(with podcast: PodcastFull) {
         titleLabel.text = podcast.title
         authorLabel.text = podcast.author
     }

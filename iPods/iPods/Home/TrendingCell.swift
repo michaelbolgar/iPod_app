@@ -18,7 +18,7 @@ final class TrendingCell: UITableViewCell {
     private let collectionView: UICollectionView
 
     // MARK: - Data
-    private var data: [Podcast] = []
+    private var data: [PodcastFull] = []
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -61,7 +61,7 @@ final class TrendingCell: UITableViewCell {
     }
 
     // MARK: - Configure
-    func configure(with data: [Podcast]) {
+    func configure(with data: [PodcastFull]) {
         self.data = data
         collectionView.reloadData()
     }

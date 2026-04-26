@@ -16,12 +16,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(windowScene: windowScene)
+        let startVC = HomeVC_Matin()
 
-        let startVC = HomeViewController()
+       // let startVC = ViewController()
+
+
+       // let startVC = ViewController()
         let navController = UINavigationController(rootViewController: startVC)
 
         window?.makeKeyAndVisible()
         window?.rootViewController = navController
     }
 }
-
