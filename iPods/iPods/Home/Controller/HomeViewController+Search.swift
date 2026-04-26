@@ -9,34 +9,35 @@ import UIKit
 import SnapKit
 
 // MARK: - Search UI Setup
-extension HomeViewController {
-
+extension HomeVC_Madina {
+    
     func setupSearchViews() {
         [resultsTableView, historyTableView, emptyStateView].forEach {
             view.addSubview($0)
         }
-
+        
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         historyTableView.dataSource = self
         historyTableView.delegate = self
-
+        
         resultsTableView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(52)
+            $0.top.equalTo(searchBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-
+        
         historyTableView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(52)
+            $0.top.equalTo(searchBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-
+        
         emptyStateView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(52)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(searchBar.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
     }
-
+    
     // MARK: - Search Views
     var resultsTableView: UITableView {
         if let tv = view.viewWithTag(101) as? UITableView { return tv }
@@ -49,7 +50,7 @@ extension HomeViewController {
         tv.keyboardDismissMode = .onDrag
         return tv
     }
-
+    
     var historyTableView: UITableView {
         if let tv = view.viewWithTag(102) as? UITableView { return tv }
         let tv = UITableView()
@@ -62,55 +63,55 @@ extension HomeViewController {
         tv.keyboardDismissMode = .onDrag
         return tv
     }
-
+    
     var emptyStateView: UIView {
         if let v = view.viewWithTag(103) { return v }
         let v = UIView()
         v.tag = 103
         v.backgroundColor = .black
         v.isHidden = true
-
+        
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 12
         stack.alignment = .center
-
+        
         let emoji = UILabel()
         emoji.text = "🎙️"
         emoji.font = .systemFont(ofSize: 60)
-
+        
         let title = UILabel()
         title.text = "Ничего не найдено"
         title.textColor = .white
         title.font = .systemFont(ofSize: 18, weight: .bold)
-
+        
         let subtitle = UILabel()
         subtitle.text = "Попробуйте другой запрос"
         subtitle.textColor = .systemGray
         subtitle.font = .systemFont(ofSize: 14)
-
+        
         [emoji, title, subtitle].forEach { stack.addArrangedSubview($0) }
         v.addSubview(stack)
-
+        
         stack.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(32)
         }
-
+        
         return v
     }
-
+    
     // MARK: - States
     func showHomeState() {
-        tableView.isHidden = false
         resultsTableView.isHidden = true
         historyTableView.isHidden = true
         emptyStateView.isHidden = true
+        tableView.isHidden = false
         UIView.animate(withDuration: 0.25) { [weak self] in
             self?.tableView.alpha = 1
         }
     }
-
+    
     func showHistoryState() {
         tableView.isHidden = true
         resultsTableView.isHidden = true
@@ -118,7 +119,7 @@ extension HomeViewController {
         historyTableView.isHidden = false
         historyTableView.reloadData()
     }
-
+    
     func showResultsState() {
         tableView.isHidden = true
         historyTableView.isHidden = true
@@ -126,75 +127,74 @@ extension HomeViewController {
         resultsTableView.isHidden = false
         resultsTableView.reloadData()
     }
-
+    
     func showEmptyState() {
         tableView.isHidden = true
         historyTableView.isHidden = true
         resultsTableView.isHidden = true
         emptyStateView.isHidden = false
     }
-
+    
     // MARK: - Search Logic
     func activateSearch() {
         UIView.animate(withDuration: 0.25) { [weak self] in
             self?.tableView.alpha = 0
         } completion: { [weak self] _ in
             guard let self else { return }
+            self.tableView.isHidden = true
             if !self.searchHistory.isEmpty {
                 self.showHistoryState()
-            } else {
-                self.tableView.isHidden = true
             }
         }
     }
-
+    
     func deactivateSearch() {
         filteredPodcasts = []
         showHomeState()
     }
-
+    
     func performSearch(query: String) {
         let trimmed = query.trimmingCharacters(in: .whitespaces)
-
+        
         if trimmed.isEmpty {
             if !searchHistory.isEmpty {
                 showHistoryState()
             }
             return
         }
-
+        
         let all = continueData + trendingData
         filteredPodcasts = all.filter {
             $0.title.lowercased().contains(trimmed.lowercased()) ||
             $0.author.lowercased().contains(trimmed.lowercased())
         }
-
+        
         filteredPodcasts.isEmpty ? showEmptyState() : showResultsState()
     }
-
+    
     func saveToHistory(_ query: String) {
         let trimmed = query.trimmingCharacters(in: .whitespaces)
         guard !trimmed.isEmpty, !searchHistory.contains(trimmed) else { return }
         searchHistory.insert(trimmed, at: 0)
         if searchHistory.count > 10 { searchHistory.removeLast() }
     }
-
+    
     // MARK: - UISearchBarDelegate
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
         activateSearch()
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         performSearch(query: searchText)
     }
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
         saveToHistory(query)
         searchBar.resignFirstResponder()
     }
-
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         if let query = searchBar.text,
            !query.trimmingCharacters(in: .whitespaces).isEmpty {
@@ -203,7 +203,7 @@ extension HomeViewController {
         searchBar.setShowsCancelButton(false, animated: true)
         deactivateSearch()
     }
-
+    
     // MARK: - TableView helpers
     func numberOfRows(in tableView: UITableView) -> Int {
         if tableView === resultsTableView {
@@ -212,7 +212,7 @@ extension HomeViewController {
             return searchHistory.count + 1
         }
     }
-
+    
     func searchCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         if tableView === resultsTableView {
             let cell = tableView.dequeueReusableCell(
@@ -238,7 +238,7 @@ extension HomeViewController {
             }
         }
     }
-
+    
     func searchDidSelect(in tableView: UITableView, at indexPath: IndexPath) {
         if tableView === resultsTableView {
             let podcast = filteredPodcasts[indexPath.row]
