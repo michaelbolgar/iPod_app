@@ -5,8 +5,8 @@
 //  Created by Михаил Болгар on 13.04.2026.
 //
 
-import UIKit
 import DesignSys
+import UIKit
 
 class ViewController: UIViewController {
 
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTapStart() {
-        let homeVC = HomeVC()
+        let homeVC = HomeVC_Matin()
         navigationController?.pushViewController(homeVC, animated: true)
     }
 }

@@ -7,20 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7AA000A2F9AA70000000001 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F11F5AED2F9B9BD400FD3E90 /* ListeningData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */; };
+		F11F5AEE2F9B9BD400FD3E90 /* ListeningData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F4ACAFE02F981BC8003E8500 /* SnapKit */; };
 		F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; };
 		F4AF36912F92F73B00BD1678 /* DesignSys.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D7AA000B2F9AA70000000002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7FFD0662F8EBB6500327536;
+			remoteInfo = Networking;
+		};
 		D7FFD06D2F8EBB6500327536 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D7FFD0662F8EBB6500327536;
 			remoteInfo = Networking;
+		};
+		F11F5AEB2F9B9BD400FD3E90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F11F5AE42F9B9BD400FD3E90;
+			remoteInfo = ListeningData;
 		};
 		F4AF368E2F92F73B00BD1678 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +56,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F4AF36912F92F73B00BD1678 /* DesignSys.framework in Embed Frameworks */,
+				F11F5AEE2F9B9BD400FD3E90 /* ListeningData.framework in Embed Frameworks */,
 				D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -47,19 +65,44 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D7AA00012F9AA70000000003 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFD0672F8EBB6500327536 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ListeningData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40DD4AD2F8D818C00D25F9E /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AF367D2F92F73B00BD1678 /* DesignSys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F41ABF262F9C156B008EFECA /* Exceptions for "iPods" folder in "iPods" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		D7AA00022F9AA70000000004 /* NetworkingTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NetworkingTests;
+			sourceTree = "<group>";
+		};
 		D7FFD0682F8EBB6500327536 /* Networking */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		F11F5AE62F9B9BD400FD3E90 /* ListeningData */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ListeningData;
+			sourceTree = "<group>";
+		};
 		F40DD4AF2F8D818C00D25F9E /* iPods */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F41ABF262F9C156B008EFECA /* Exceptions for "iPods" folder in "iPods" target */,
+			);
 			path = iPods;
 			sourceTree = "<group>";
 		};
@@ -71,7 +114,22 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D7AA00052F9AA70000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7AA000A2F9AA70000000001 /* Networking.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D7FFD0642F8EBB6500327536 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F11F5AE22F9B9BD400FD3E90 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -84,6 +142,7 @@
 			files = (
 				F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */,
 				F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */,
+				F11F5AED2F9B9BD400FD3E90 /* ListeningData.framework in Frameworks */,
 				D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,8 +162,9 @@
 			children = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
 				D7FFD0682F8EBB6500327536 /* Networking */,
+				D7AA00022F9AA70000000004 /* NetworkingTests */,
 				F4AF367E2F92F73B00BD1678 /* DesignSys */,
-				F4ACAFDF2F981BC8003E8500 /* Frameworks */,
+				F11F5AE62F9B9BD400FD3E90 /* ListeningData */,
 				F40DD4AE2F8D818C00D25F9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,22 +174,24 @@
 			children = (
 				F40DD4AD2F8D818C00D25F9E /* iPods.app */,
 				D7FFD0672F8EBB6500327536 /* Networking.framework */,
+				D7AA00012F9AA70000000003 /* NetworkingTests.xctest */,
 				F4AF367D2F92F73B00BD1678 /* DesignSys.framework */,
+				F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F4ACAFDF2F981BC8003E8500 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
 		D7FFD0622F8EBB6500327536 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F11F5AE02F9B9BD400FD3E90 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -146,6 +208,29 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		D7AA00032F9AA70000000006 /* NetworkingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7AA00092F9AA70000000009 /* Build configuration list for PBXNativeTarget "NetworkingTests" */;
+			buildPhases = (
+				D7AA00042F9AA70000000007 /* Sources */,
+				D7AA00052F9AA70000000005 /* Frameworks */,
+				D7AA00062F9AA70000000008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7AA000C2F9AA7000000000C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D7AA00022F9AA70000000004 /* NetworkingTests */,
+			);
+			name = NetworkingTests;
+			packageProductDependencies = (
+			);
+			productName = NetworkingTests;
+			productReference = D7AA00012F9AA70000000003 /* NetworkingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D7FFD0662F8EBB6500327536 /* Networking */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7FFD0742F8EBB6500327536 /* Build configuration list for PBXNativeTarget "Networking" */;
@@ -169,6 +254,29 @@
 			productReference = D7FFD0672F8EBB6500327536 /* Networking.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F11F5AE42F9B9BD400FD3E90 /* ListeningData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F11F5AEF2F9B9BD400FD3E90 /* Build configuration list for PBXNativeTarget "ListeningData" */;
+			buildPhases = (
+				F11F5AE02F9B9BD400FD3E90 /* Headers */,
+				F11F5AE12F9B9BD400FD3E90 /* Sources */,
+				F11F5AE22F9B9BD400FD3E90 /* Frameworks */,
+				F11F5AE32F9B9BD400FD3E90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F11F5AE62F9B9BD400FD3E90 /* ListeningData */,
+			);
+			name = ListeningData;
+			packageProductDependencies = (
+			);
+			productName = ListeningData;
+			productReference = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		F40DD4AC2F8D818C00D25F9E /* iPods */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F40DD4C02F8D818D00D25F9E /* Build configuration list for PBXNativeTarget "iPods" */;
@@ -183,6 +291,7 @@
 			dependencies = (
 				D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */,
 				F4AF368F2F92F73B00BD1678 /* PBXTargetDependency */,
+				F11F5AEC2F9B9BD400FD3E90 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
@@ -225,11 +334,18 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2640;
+				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
+					D7AA00032F9AA70000000006 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = D7FFD0662F8EBB6500327536;
+					};
 					D7FFD0662F8EBB6500327536 = {
 						CreatedOnToolsVersion = 26.3;
+					};
+					F11F5AE42F9B9BD400FD3E90 = {
+						CreatedOnToolsVersion = 26.2;
 					};
 					F40DD4AC2F8D818C00D25F9E = {
 						CreatedOnToolsVersion = 26.4;
@@ -258,13 +374,29 @@
 			targets = (
 				F40DD4AC2F8D818C00D25F9E /* iPods */,
 				D7FFD0662F8EBB6500327536 /* Networking */,
+				D7AA00032F9AA70000000006 /* NetworkingTests */,
 				F4AF367C2F92F73B00BD1678 /* DesignSys */,
+				F11F5AE42F9B9BD400FD3E90 /* ListeningData */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D7AA00062F9AA70000000008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D7FFD0652F8EBB6500327536 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F11F5AE32F9B9BD400FD3E90 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,7 +420,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D7AA00042F9AA70000000007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D7FFD0632F8EBB6500327536 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F11F5AE12F9B9BD400FD3E90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -312,10 +458,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D7AA000C2F9AA7000000000C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7FFD0662F8EBB6500327536 /* Networking */;
+			targetProxy = D7AA000B2F9AA70000000002 /* PBXContainerItemProxy */;
+		};
 		D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D7FFD0662F8EBB6500327536 /* Networking */;
 			targetProxy = D7FFD06D2F8EBB6500327536 /* PBXContainerItemProxy */;
+		};
+		F11F5AEC2F9B9BD400FD3E90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F11F5AE42F9B9BD400FD3E90 /* ListeningData */;
+			targetProxy = F11F5AEB2F9B9BD400FD3E90 /* PBXContainerItemProxy */;
 		};
 		F4AF368F2F92F73B00BD1678 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -325,18 +481,78 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		D7AA00072F9AA70000000007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = icode.NetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D7AA00082F9AA70000000008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = icode.NetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D7FFD0722F8EBB6500327536 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -349,16 +565,22 @@
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = icode.Networking;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = icode.networking;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -368,14 +590,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 82RR9F5WZ7;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -388,16 +612,110 @@
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = icode.Networking;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = icode.networking;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F11F5AF02F9B9BD400FD3E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.ListeningData;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F11F5AF12F9B9BD400FD3E90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = icode.ListeningData;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -408,16 +726,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87P7GYW9VY;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = iPods/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -425,6 +744,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = icode.iPods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -444,16 +764,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 82RR9F5WZ7;
-				GENERATE_INFOPLIST_FILE = YES;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = iPods/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,6 +782,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = icode.iPods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -528,6 +850,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -586,6 +909,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -602,15 +926,16 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -645,15 +970,16 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 82RR9F5WZ7;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -685,11 +1011,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D7AA00092F9AA70000000009 /* Build configuration list for PBXNativeTarget "NetworkingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7AA00072F9AA70000000007 /* Debug */,
+				D7AA00082F9AA70000000008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D7FFD0742F8EBB6500327536 /* Build configuration list for PBXNativeTarget "Networking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7FFD0722F8EBB6500327536 /* Debug */,
 				D7FFD0732F8EBB6500327536 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F11F5AEF2F9B9BD400FD3E90 /* Build configuration list for PBXNativeTarget "ListeningData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F11F5AF02F9B9BD400FD3E90 /* Debug */,
+				F11F5AF12F9B9BD400FD3E90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
