@@ -16,9 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(windowScene: windowScene)
-        let startVC = HomeVC_Matin()
+        //let startVC = HomeVC_Matin()
 
-       // let startVC = ViewController()
+        let startVC = HomeVC_Madina()
 
 
        // let startVC = ViewController()
