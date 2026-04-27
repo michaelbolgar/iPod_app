@@ -20,7 +20,8 @@ extension HomeVC_Madina {
         resultsTableView.delegate = self
         historyTableView.dataSource = self
         historyTableView.delegate = self
-        
+
+#warning("странное положение кода вёрстки. Это не добавляет видимого удобства в коде - я при открытии файла в первую очередь вижу вёрстку, хотя она мне вряд ли нужна (UI редко меняют)")
         resultsTableView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
@@ -219,6 +220,7 @@ extension HomeVC_Madina {
                 withIdentifier: SearchResultCell.reuseID,
                 for: indexPath
             ) as! SearchResultCell
+            #warning("перемудрили с таблицами. Во-первых, приложение падает с ошибкой index out of range после возврата из режима поиска и попытке прокрутить экран вниз. Во-вторых, когда появляется история поиска, экран ломается (см скрин). Во-третьих, я бы заменил поиск в иерархии через viewWithTag на одну таблицу для всех кейсов с секциями, которые скрываются, если массив элементов пуст")
             cell.configure(title: filteredPodcasts[indexPath.row].title,
                            author: filteredPodcasts[indexPath.row].author)
             return cell
