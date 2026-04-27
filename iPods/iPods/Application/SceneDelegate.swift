@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
@@ -16,15 +16,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(windowScene: windowScene)
+
+        let hasSeenOnboarding = UserDefaults.standard.bool(forKey: OnboardingVC.hasSeenOnboardingKey)
         //let startVC = HomeVC_Matin()
 
-        let startVC = HomeVC_Madina()
 
-
-       // let startVC = ViewController()
-        let navController = UINavigationController(rootViewController: startVC)
+        if hasSeenOnboarding {
+            showHome()
+        } else {
+            let onboarding = OnboardingVC(transitionStyle: .scroll, navigationOrientation: .horizontal)
+            window?.rootViewController = onboarding
+        }
 
         window?.makeKeyAndVisible()
+    }
+
+    func showHome() {
+        let navController = UINavigationController(rootViewController: HomeVC_Madina())
         window?.rootViewController = navController
     }
 }
+
