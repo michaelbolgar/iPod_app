@@ -1,4 +1,19 @@
-// HomeVC_Madina.swift
+//
+//  HomeVC.swift
+//  iPods
+//
+//  Created by Administration  on 28/04/26.
+//
+
+
+
+// HomeVC.swift
+// iPods
+
+// HomeVC.swift
+// iPods
+
+// HomeVC.swift
 // iPods
 
 import UIKit
@@ -120,15 +135,20 @@ final class HomeVC_Madina: UIViewController {
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
-    // MARK: - Networking (iTunes API — без ключей)
 
-        private func loadTrending() {
+    // MARK: - Networking
+    private func loadTrending() {
             loadingIndicator.startAnimating()
+            print("🚀 loadTrending вызван")
+
             Task {
                 let results = await ITunesService.fetchTrending()
+                print("✅ получено подкастов:", results.count)
+
                 await MainActor.run {
                     self.loadingIndicator.stopAnimating()
                     self.trendingData = results
+                    print("📊 trendingData.count:", self.trendingData.count)
                     self.tableView.reloadData()
                 }
             }

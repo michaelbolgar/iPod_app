@@ -1,11 +1,16 @@
 //
-//  Podcast.swift
+//  PodcastFull.swift
 //  iPods
 //
-//  Created by Administration  on 17/04/26.
+//  Created by Administration  on 28/04/26.
 //
 
-import UIKit
+
+// PodcastFull.swift
+// iPods
+
+import Foundation
+
 struct PodcastFull {
     let title: String
     let author: String
@@ -13,5 +18,6 @@ struct PodcastFull {
     let rating: Double
     let episodeCount: Int
     let description: String
-    var progress: Float 
+    let artworkURL: URL?
+    var progress: Float
 }

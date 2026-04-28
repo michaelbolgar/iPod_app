@@ -73,16 +73,93 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F41ABF262F9C156B008EFECA /* Exceptions for "iPods" folder in "iPods" target */ = {
+		2B35FAA32F9FFAA900D93419 /* Exceptions for "iPods" folder in "iPods" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"/Localized: Application/LaunchScreen.storyboard",
+				Application/AppDelegate.swift,
+				Application/SceneDelegate.swift,
+				Application/ViewController.swift,
+				Assets.xcassets,
+				Extension/UIViewController.swift,
+				Home/ContinueCell.swift,
+				Home/Controller/HomeVC_Matin.swift,
+				Home/DetailsViewController.swift,
+				Home/HomeVC_Madina.swift,
+				Home/MiniPlayerView.swift,
+				Home/Models/Podcast.swift,
+				Home/Models/PodcastFull.swift,
+				Home/SectionHeaderView.swift,
+				Home/TrendingCardView.swift,
+				Home/TrendingCell.swift,
+				Home/TrendingItemCell.swift,
+				Home/View/HomeView.swift,
+				Home/View/SearchHistoryCell.swift,
+				Home/View/SearchHistoryHeaderCell.swift,
+				Home/View/SearchResultCell.swift,
+				Onboarding/OnboardingVC.swift,
+				Player/PlayerService.swift,
+				Player/PlayerViewController.swift,
+			);
+			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
+		};
+		2B35FAA42F9FFAA900D93419 /* Exceptions for "iPods" folder in "Networking" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"/Localized: Application/LaunchScreen.storyboard",
+				Application/AppDelegate.swift,
+				Application/SceneDelegate.swift,
+				Application/ViewController.swift,
+				Assets.xcassets,
+				Extension/UIViewController.swift,
+				Home/ContinueCell.swift,
+				Home/Controller/HomeVC_Matin.swift,
+				Home/DetailsViewController.swift,
+				Home/HomeVC_Madina.swift,
+				Home/MiniPlayerView.swift,
+				Home/Models/Podcast.swift,
+				Home/SectionHeaderView.swift,
+				Home/TrendingCardView.swift,
+				Home/TrendingCell.swift,
+				Home/TrendingItemCell.swift,
+				Home/View/HomeView.swift,
+				Home/View/SearchHistoryCell.swift,
+				Home/View/SearchHistoryHeaderCell.swift,
+				Home/View/SearchResultCell.swift,
 				Info.plist,
+				Onboarding/OnboardingVC.swift,
+				Player/PlayerService.swift,
+				Player/PlayerViewController.swift,
+			);
+			target = D7FFD0662F8EBB6500327536 /* Networking */;
+		};
+		2B35FAB12FA0553200D93419 /* Exceptions for "Home" folder in "iPods" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ITunesService.swift,
 			);
 			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2B35FA1E2F9FFA8C00D93419 /* Home */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2B35FAB12FA0553200D93419 /* Exceptions for "Home" folder in "iPods" target */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		2B35FA892F9FFAA900D93419 /* iPods */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2B35FAA32F9FFAA900D93419 /* Exceptions for "iPods" folder in "iPods" target */,
+				2B35FAA42F9FFAA900D93419 /* Exceptions for "iPods" folder in "Networking" target */,
+			);
+			path = iPods;
+			sourceTree = "<group>";
+		};
 		D7AA00022F9AA70000000004 /* NetworkingTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = NetworkingTests;
@@ -96,14 +173,6 @@
 		F11F5AE62F9B9BD400FD3E90 /* ListeningData */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ListeningData;
-			sourceTree = "<group>";
-		};
-		F40DD4AF2F8D818C00D25F9E /* iPods */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				F41ABF262F9C156B008EFECA /* Exceptions for "iPods" folder in "iPods" target */,
-			);
-			path = iPods;
 			sourceTree = "<group>";
 		};
 		F4AF367E2F92F73B00BD1678 /* DesignSys */ = {
@@ -160,7 +229,8 @@
 		F40DD4A42F8D818C00D25F9E = {
 			isa = PBXGroup;
 			children = (
-				F40DD4AF2F8D818C00D25F9E /* iPods */,
+				2B35FA892F9FFAA900D93419 /* iPods */,
+				2B35FA1E2F9FFA8C00D93419 /* Home */,
 				D7FFD0682F8EBB6500327536 /* Networking */,
 				D7AA00022F9AA70000000004 /* NetworkingTests */,
 				F4AF367E2F92F73B00BD1678 /* DesignSys */,
@@ -245,6 +315,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2B35FA1E2F9FFA8C00D93419 /* Home */,
+				2B35FA892F9FFAA900D93419 /* iPods */,
 				D7FFD0682F8EBB6500327536 /* Networking */,
 			);
 			name = Networking;
@@ -292,9 +364,6 @@
 				D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */,
 				F4AF368F2F92F73B00BD1678 /* PBXTargetDependency */,
 				F11F5AEC2F9B9BD400FD3E90 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				F40DD4AF2F8D818C00D25F9E /* iPods */,
 			);
 			name = iPods;
 			packageProductDependencies = (

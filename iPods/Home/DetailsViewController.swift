@@ -1,30 +1,33 @@
 //
-// DetailsViewController.swift
-// iPods
+//  DetailsViewController.swift
+//  iPods
+//
+//  Created by Administration  on 28/04/26.
+//
+
 
 import UIKit
 
 final class DetailsViewController: UIViewController {
 
     // MARK: - Data
+
     private let podcast: PodcastFull
 
     // MARK: - UI
-    private let coverView: UIImageView = {
-        let iv = UIImageView()
-        iv.backgroundColor = .darkGray
-        iv.layer.cornerRadius = 16
-        iv.clipsToBounds = true
-        iv.contentMode = .scaleAspectFill
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        return iv
+
+    private let coverView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .darkGray
+        view.layer.cornerRadius = 16
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .boldSystemFont(ofSize: 22)
-        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -55,6 +58,7 @@ final class DetailsViewController: UIViewController {
     }()
 
     // MARK: - Init
+
     init(podcast: PodcastFull) {
         self.podcast = podcast
         super.init(nibName: nil, bundle: nil)
@@ -63,6 +67,7 @@ final class DetailsViewController: UIViewController {
     required init?(coder: NSCoder) { fatalError() }
 
     // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -71,6 +76,7 @@ final class DetailsViewController: UIViewController {
     }
 
     // MARK: - Setup
+
     private func setupUI() {
         let stack = UIStackView(arrangedSubviews: [
             coverView, titleLabel, authorLabel, metaLabel, descriptionLabel
@@ -79,8 +85,10 @@ final class DetailsViewController: UIViewController {
         stack.spacing = 12
         stack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stack)
+
         NSLayoutConstraint.activate([
             coverView.heightAnchor.constraint(equalToConstant: 260),
+
             stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
@@ -88,22 +96,11 @@ final class DetailsViewController: UIViewController {
     }
 
     // MARK: - Configure
+
     private func configure() {
         titleLabel.text = podcast.title
         authorLabel.text = podcast.author
         metaLabel.text = "⭐️ \(podcast.rating)  •  \(podcast.episodeCount) eps  •  \(podcast.genre)"
         descriptionLabel.text = podcast.description
-
-        // Загружаем обложку если есть
-        if let url = podcast.artworkURL {
-            Task {
-                if let (data, _) = try? await URLSession.shared.data(from: url),
-                   let image = UIImage(data: data) {
-                    await MainActor.run {
-                        self.coverView.image = image
-                    }
-                }
-            }
-        }
     }
 }
