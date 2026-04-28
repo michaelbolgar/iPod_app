@@ -9,9 +9,10 @@ final class TrendingItemCell: UICollectionViewCell {
 
     static let reuseID = "TrendingItemCell"
 
-    private let imageView = UIView()
+    private let coverImageView = UIImageView()
     private let titleLabel = UILabel()
     private let authorLabel = UILabel()
+    private var imageTask: URLSessionDataTask?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,9 +26,11 @@ final class TrendingItemCell: UICollectionViewCell {
     private func setupUI() {
         contentView.backgroundColor = .clear
 
-        imageView.backgroundColor = UIColor(white: 0.15, alpha: 1)
-        imageView.layer.cornerRadius = 12
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        coverImageView.backgroundColor = UIColor(white: 0.15, alpha: 1)
+        coverImageView.layer.cornerRadius = 12
+        coverImageView.clipsToBounds = true
+        coverImageView.contentMode = .scaleAspectFill
+        coverImageView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: 14, weight: .medium)
@@ -37,7 +40,7 @@ final class TrendingItemCell: UICollectionViewCell {
         authorLabel.font = .systemFont(ofSize: 12)
 
         let stack = UIStackView(arrangedSubviews: [
-            imageView,
+            coverImageView,
             titleLabel,
             authorLabel
         ])
@@ -54,12 +57,27 @@ final class TrendingItemCell: UICollectionViewCell {
             stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+            coverImageView.heightAnchor.constraint(equalTo: coverImageView.widthAnchor)
         ])
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageTask?.cancel()
+        coverImageView.image = nil
     }
 
     func configure(with podcast: PodcastFull) {
         titleLabel.text = podcast.title
         authorLabel.text = podcast.author
+
+        guard let url = podcast.artworkURL else { return }
+        imageTask = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
+            guard let data, let image = UIImage(data: data) else { return }
+            DispatchQueue.main.async {
+                self?.coverImageView.image = image
+            }
+        }
+        imageTask?.resume()
     }
 }

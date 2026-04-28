@@ -1,9 +1,5 @@
-
-
-
-//final class HomeVC {}
-
 import UIKit
+import Networking
 
 final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
 
@@ -28,6 +24,11 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     private let miniPlayer = MiniPlayerView()
     private var miniPlayerBottom: NSLayoutConstraint!
 
+    // MARK: - Services
+
+    private let podcastService = try? PodcastService()
+    private var episodeLoadTask: Task<Void, Never>?
+
     // MARK: - Data
 
     private let continueData: [PodcastFull] = [
@@ -39,20 +40,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                 description: "Meaningful dialogues with thought leaders.", progress: 0.3)
     ]
 
-    private let trendingData: [PodcastFull] = [
-        PodcastFull(title: "The Creative Mind", author: "Sarah Johnson",
-                genre: "Arts", rating: 4.8, episodeCount: 89,
-                description: "", progress: 0),
-        PodcastFull(title: "Deep Conversations", author: "Marcus Chen",
-                genre: "Society", rating: 4.6, episodeCount: 120,
-                description: "", progress: 0),
-        PodcastFull(title: "The Science Hour", author: "Dr. James Park",
-                genre: "Science", rating: 4.9, episodeCount: 156,
-                description: "", progress: 0),
-        PodcastFull(title: "Mind & Body", author: "Lisa Torres",
-                genre: "Health", rating: 4.4, episodeCount: 74,
-                description: "", progress: 0)
-    ]
+    private var trendingData: [PodcastFull] = []
 
     // MARK: - Lifecycle
 
@@ -62,6 +50,52 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
         setupNavigationBar()
         setupTableView()
         setupMiniPlayer()
+        loadTrending()
+    }
+
+    private func loadTrending() {
+        guard let service = podcastService else { return }
+        Task { [weak self] in
+            guard let self else { return }
+            do {
+                let podcasts = try await service.getTrending(max: 10)
+                let mapped = podcasts.map { podcast in
+                    PodcastFull(
+                        title: podcast.title,
+                        author: podcast.author ?? "",
+                        genre: "",
+                        rating: 0,
+                        episodeCount: 0,
+                        description: "",
+                        progress: 0,
+                        artworkURL: podcast.imageURL,
+                        feedID: podcast.id
+                    )
+                }
+                await MainActor.run {
+                    self.trendingData = mapped
+                    self.tableView.reloadData()
+                }
+            } catch {
+                // network or decoding error — trending stays empty
+            }
+        }
+    }
+
+    private func loadEpisodesAndPlay(for podcast: PodcastFull) {
+        guard let feedID = podcast.feedID, let service = podcastService else { return }
+        episodeLoadTask?.cancel()
+        episodeLoadTask = Task {
+            do {
+                let episodes = try await service.getEpisodes(feedID: feedID, max: 20)
+                guard !episodes.isEmpty, !Task.isCancelled else { return }
+                await MainActor.run {
+                    PlayerService.shared.startPlayback(episodes: episodes, index: 0)
+                }
+            } catch {
+                // network or decoding error — playback not started
+            }
+        }
     }
 
     // MARK: - Setup
@@ -192,6 +226,7 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
                 guard let self, index < self.trendingData.count else { return }
                 let podcast = self.trendingData[index]
                 self.showMiniPlayer(with: podcast)
+                self.loadEpisodesAndPlay(for: podcast)
                 let vc = DetailsViewController(podcast: podcast)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
