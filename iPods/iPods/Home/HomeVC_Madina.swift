@@ -39,7 +39,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                     description: "Meaningful dialogues with thought leaders.", progress: 0.3)
     ]
 
-    private var trendingData: [PodcastFull] = []
+    var trendingData: [PodcastFull] = []
   
   
     // MARK: - Lifecycle
