@@ -5,7 +5,8 @@
 //  Created by Administration  on 17/04/26.
 //
 
-import UIKit
+import Foundation
+
 struct PodcastFull {
     let title: String
     let author: String
@@ -13,5 +14,7 @@ struct PodcastFull {
     let rating: Double
     let episodeCount: Int
     let description: String
-    var progress: Float 
+    var progress: Float
+    var artworkURL: URL? = nil
+    var feedID: Int? = nil
 }
