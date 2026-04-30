@@ -30,25 +30,24 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     
     // MARK: - Data
     let continueData: [PodcastFull] = [
-        PodcastFull(title: "The Creative Mind", author: "Sarah Johnson",
+        PodcastFull(id: 1, title: "The Creative Mind", author: "Sarah Johnson",
                     genre: "Arts", rating: 4.7, episodeCount: 89,
                     description: "Exploring creativity in all its forms.", progress: 0.6),
-        PodcastFull(title: "Deep Conversations", author: "Marcus Chen",
+        PodcastFull(id: 2, title: "Deep Conversations", author: "Marcus Chen",
                     genre: "Society", rating: 4.5, episodeCount: 120,
                     description: "Meaningful dialogues with thought leaders.", progress: 0.3)
     ]
-    
     let trendingData: [PodcastFull] = [
-        PodcastFull(title: "The Creative Mind", author: "Sarah Johnson",
+        PodcastFull(id: 3, title: "The Creative Mind", author: "Sarah Johnson",
                     genre: "Arts", rating: 4.8, episodeCount: 89,
                     description: "", progress: 0),
-        PodcastFull(title: "Deep Conversations", author: "Marcus Chen",
+        PodcastFull(id: 4, title: "Deep Conversations", author: "Marcus Chen",
                     genre: "Society", rating: 4.6, episodeCount: 120,
                     description: "", progress: 0),
-        PodcastFull(title: "The Science Hour", author: "Dr. James Park",
+        PodcastFull(id: 5, title: "The Science Hour", author: "Dr. James Park",
                     genre: "Science", rating: 4.9, episodeCount: 156,
                     description: "", progress: 0),
-        PodcastFull(title: "Mind & Body", author: "Lisa Torres",
+        PodcastFull(id: 6, title: "Mind & Body", author: "Lisa Torres",
                     genre: "Health", rating: 4.4, episodeCount: 74,
                     description: "", progress: 0)
     ]

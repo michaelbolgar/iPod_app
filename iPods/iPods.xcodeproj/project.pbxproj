@@ -73,6 +73,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F10278F12FA391C1001004DF /* Exceptions for "Share" folder in "DesignSys" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ShareTestViewController.swift,
+			);
+			target = F4AF367C2F92F73B00BD1678 /* DesignSys */;
+		};
+		F10278F32FA391C4001004DF /* Exceptions for "Share" folder in "iPods" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ShareTestViewController.swift,
+			);
+			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
+		};
 		F41ABF262F9C156B008EFECA /* Exceptions for "iPods" folder in "iPods" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -96,6 +110,15 @@
 		F11F5AE62F9B9BD400FD3E90 /* ListeningData */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ListeningData;
+			sourceTree = "<group>";
+		};
+		F1CFC6F02FA131CB00C2118C /* Share */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F10278F32FA391C4001004DF /* Exceptions for "Share" folder in "iPods" target */,
+				F10278F12FA391C1001004DF /* Exceptions for "Share" folder in "DesignSys" target */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		F40DD4AF2F8D818C00D25F9E /* iPods */ = {
@@ -160,6 +183,7 @@
 		F40DD4A42F8D818C00D25F9E = {
 			isa = PBXGroup;
 			children = (
+				F1CFC6F02FA131CB00C2118C /* Share */,
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
 				D7FFD0682F8EBB6500327536 /* Networking */,
 				D7AA00022F9AA70000000004 /* NetworkingTests */,
@@ -318,6 +342,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				F1CFC6F02FA131CB00C2118C /* Share */,
 				F4AF367E2F92F73B00BD1678 /* DesignSys */,
 			);
 			name = DesignSys;
@@ -648,7 +673,7 @@
 				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -692,7 +717,7 @@
 				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -729,7 +754,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = 435Y28TX46;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = iPods/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -742,7 +767,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = icode.iPods;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakina.iPods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -767,7 +792,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = 435Y28TX46;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = iPods/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -780,7 +805,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = icode.iPods;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakina.iPods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -935,7 +960,7 @@
 				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -979,7 +1004,7 @@
 				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
