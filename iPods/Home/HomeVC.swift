@@ -4,50 +4,18 @@
 //
 //  Created by Administration  on 28/04/26.
 //
-
-
-
-// HomeVC.swift
-// iPods
-
-// HomeVC.swift
-// iPods
-
-// HomeVC.swift
-// iPods
-
 import UIKit
 
 final class HomeVC_Madina: UIViewController {
-
-    // MARK: - Sections
 
     enum Section: Int, CaseIterable {
         case continueListening
         case trending
     }
 
-    // MARK: - Layout
-
-    private enum Layout {
-        static let continueHeight: CGFloat = 88
-        static let headerHeight: CGFloat = 44
-        static let searchHeight: CGFloat = 52
-    }
-
     // MARK: - UI
 
     private let tableView = UITableView(frame: .zero, style: .plain)
-    private let miniPlayer = MiniPlayerView()
-    private var miniPlayerBottom: NSLayoutConstraint!
-
-    private let loadingIndicator: UIActivityIndicatorView = {
-        let ai = UIActivityIndicatorView(style: .medium)
-        ai.color = .white
-        ai.hidesWhenStopped = true
-        ai.translatesAutoresizingMaskIntoConstraints = false
-        return ai
-    }()
 
     // MARK: - Data
 
@@ -58,224 +26,276 @@ final class HomeVC_Madina: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .black
-        setupNavigationBar()
-        setupTableView()
-        setupMiniPlayer()
-        setupLoadingIndicator()
-        mockContinue()
-        loadTrending()
+        setupUI()
+        setupMockData()
     }
 
     // MARK: - Setup
 
-    private func setupNavigationBar() {
-        navigationItem.title = "Listen Now"
+    private func setupUI() {
+        title = "Listen Now"
+
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.largeTitleTextAttributes = [
             .foregroundColor: UIColor.white
         ]
-    }
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.white
+        ]
+        navigationController?.navigationBar.barStyle = .black
 
-    private func setupTableView() {
         tableView.backgroundColor = .black
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ContinueCell.self, forCellReuseIdentifier: ContinueCell.reuseID)
-        tableView.register(TrendingCell.self, forCellReuseIdentifier: TrendingCell.reuseID)
-        tableView.tableHeaderView = makeSearchBar()
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
+        tableView.showsVerticalScrollIndicator = false
 
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-    }
+        tableView.register(
+            ContinueCell.self,
+            forCellReuseIdentifier: ContinueCell.reuseID
+        )
 
-    private func makeSearchBar() -> UISearchBar {
-        let searchBar = UISearchBar(frame: CGRect(
-            x: 0, y: 0,
-            width: view.frame.width,
-            height: Layout.searchHeight
-        ))
+        tableView.register(
+            TrendingCell.self,
+            forCellReuseIdentifier: TrendingCell.reuseID
+        )
+
+        let searchBar = UISearchBar(
+            frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 56)
+        )
         searchBar.placeholder = "Search podcasts..."
         searchBar.searchBarStyle = .minimal
         searchBar.searchTextField.textColor = .white
-        return searchBar
-    }
-
-    private func setupMiniPlayer() {
-        miniPlayer.translatesAutoresizingMaskIntoConstraints = false
-        miniPlayer.isHidden = true
-        view.addSubview(miniPlayer)
-
-        miniPlayerBottom = miniPlayer.bottomAnchor.constraint(
-            equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-            constant: 80
+        searchBar.searchTextField.backgroundColor = UIColor(
+            white: 0.12,
+            alpha: 1
         )
+
+        tableView.tableHeaderView = searchBar
+
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
-            miniPlayer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            miniPlayer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            miniPlayer.heightAnchor.constraint(equalToConstant: 64),
-            miniPlayerBottom
+            tableView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor
+            ),
+            tableView.bottomAnchor.constraint(
+                equalTo: view.bottomAnchor
+            ),
+            tableView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor
+            ),
+            tableView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor
+            )
         ])
     }
 
-    private func setupLoadingIndicator() {
-        view.addSubview(loadingIndicator)
-        NSLayoutConstraint.activate([
-            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
+    // MARK: - Mock Data
 
-    // MARK: - Networking
-    private func loadTrending() {
-            loadingIndicator.startAnimating()
-            print("🚀 loadTrending вызван")
+    private func setupMockData() {
+        continueData = [
+            PodcastFull(
+                title: "Creative Talks",
+                author: "Jason Adams",
+                genre: "Design",
+                rating: 4.8,
+                episodeCount: 20,
+                description: "Creative podcast about design.",
+                artworkURL: nil,
+                progress: 0.6
+            ),
+            PodcastFull(
+                title: "Morning Routine",
+                author: "Lisa Parker",
+                genre: "Lifestyle",
+                rating: 4.7,
+                episodeCount: 14,
+                description: "Daily habits and productivity.",
+                artworkURL: nil,
+                progress: 0.35
+            )
+        ]
+        trendingData = [
+                    PodcastFull(
+                        title: "Science Hour",
+                        author: "Dr. James Park",
+                        genre: "Science",
+                        rating: 4.9,
+                        episodeCount: 40,
+                        description: "Science interviews.",
+                        artworkURL: nil,
+                        progress: 0
+                    ),
+                    PodcastFull(
+                        title: "Deep Conversations",
+                        author: "Maria Chen",
+                        genre: "Lifestyle",
+                        rating: 4.7,
+                        episodeCount: 18,
+                        description: "Meaningful interviews.",
+                        artworkURL: nil,
+                        progress: 0
+                    ),
+                    PodcastFull(
+                        title: "Future Thinking",
+                        author: "Alex Morgan",
+                        genre: "Technology",
+                        rating: 4.8,
+                        episodeCount: 25,
+                        description: "Tech and innovation.",
+                        artworkURL: nil,
+                        progress: 0
+                    ),
+                    PodcastFull(
+                        title: "Mindset Lab",
+                        author: "Emma Stone",
+                        genre: "Self Growth",
+                        rating: 4.6,
+                        episodeCount: 30,
+                        description: "Mindset and growth.",
+                        artworkURL: nil,
+                        progress: 0
+                    ),
+                    PodcastFull(
+                        title: "Design Stories",
+                        author: "Olivia Hart",
+                        genre: "Design",
+                        rating: 4.9,
+                        episodeCount: 22,
+                        description: "Product design stories.",
+                        artworkURL: nil,
+                        progress: 0
+                    ),
+                    PodcastFull(
+                        title: "Business Weekly",
+                        author: "Daniel Ross",
+                        genre: "Business",
+                        rating: 4.5,
+                        episodeCount: 50,
+                        description: "Startup and business.",
+                        artworkURL: nil,
+                        progress: 0
+                    )
+                ]
 
-            Task {
-                let results = await ITunesService.fetchTrending()
-                print("✅ получено подкастов:", results.count)
+                tableView.reloadData()
+            }
 
-                await MainActor.run {
-                    self.loadingIndicator.stopAnimating()
-                    self.trendingData = results
-                    print("📊 trendingData.count:", self.trendingData.count)
-                    self.tableView.reloadData()
-                }
+            // MARK: - Navigation
+
+            private func openDetails(_ podcast: PodcastFull) {
+                let vc = DetailsViewController(podcast: podcast)
+                navigationController?.pushViewController(vc, animated: true)
             }
         }
 
-        // MARK: - Mock continue
+        // MARK: - TableView
 
-        private func mockContinue() {
-            continueData = [
-                PodcastFull(
-                    title: "Design Talks",
-                    author: "Anna",
-                    genre: "Design",
-                    rating: 4.5,
-                    episodeCount: 20,
-                    description: "",
-                    artworkURL: nil,
-                    progress: 0.4
-                )
-            ]
-        }
+        extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
 
-        // MARK: - Mini Player
-
-        private func showMiniPlayer(_ podcast: PodcastFull) {
-            miniPlayer.configure(with: podcast)
-            miniPlayer.isHidden = false
-            miniPlayerBottom.constant = -8
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
+            func numberOfSections(in tableView: UITableView) -> Int {
+                Section.allCases.count
             }
-        }
-    }
 
-    // MARK: - UITableViewDataSource & UITableViewDelegate
+            func tableView(
+                _ tableView: UITableView,
+                numberOfRowsInSection section: Int
+            ) -> Int {
+                guard let section = Section(rawValue: section) else { return 0 }
 
-    extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
-
-        func numberOfSections(in tableView: UITableView) -> Int {
-            Section.allCases.count
-        }
-
-        func tableView(_ tableView: UITableView,
-                       numberOfRowsInSection section: Int) -> Int {
-            guard let section = Section(rawValue: section) else { return 0 }
-            switch section {
-            case .continueListening: return continueData.count
-            case .trending:          return trendingData.isEmpty ? 0 : 1
-            }
-        }
-
-        func tableView(_ tableView: UITableView,
-                       cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let section = Section(rawValue: indexPath.section) else {
-                return UITableViewCell()
-            }
-            switch section {
-            case .continueListening:
-                let cell = tableView.dequeueReusableCell(
-                    withIdentifier: ContinueCell.reuseID, for: indexPath
-                ) as! ContinueCell
-                cell.configure(with: continueData[indexPath.row])
-                return cell
-
-            case .trending:
-                let cell = tableView.dequeueReusableCell(
-                    withIdentifier: TrendingCell.reuseID, for: indexPath
-                ) as! TrendingCell
-                cell.configure(with: trendingData)
-                cell.onSelect = { [weak self] index in
-                    guard let self,
-                          self.trendingData.indices.contains(index) else { return }
-                    let podcast = self.trendingData[index]
-                    self.showMiniPlayer(podcast)
-                    let vc = DetailsViewController(podcast: podcast)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                return cell
-            }
-        }
-
-        func tableView(_ tableView: UITableView,
-                       heightForRowAt indexPath: IndexPath) -> CGFloat {
-            guard let section = Section(rawValue: indexPath.section) else { return 0 }
-            switch section {
-            case .continueListening:
-                return Layout.continueHeight
-            case .trending:
-                let count = trendingData.count
-                guard count > 0 else { return 0 }
-                let rows = Int(ceil(Double(count) / 2.0))
-                let width = UIScreen.main.bounds.width - 32
-                let cardWidth = (width - 12) / 2
-                let cardHeight = cardWidth + 50
-                return CGFloat(rows) * cardHeight + CGFloat(rows - 1) * 12 + 24
-            }
-        }
-        func tableView(_ tableView: UITableView,
-                           viewForHeaderInSection section: Int) -> UIView? {
-                guard let section = Section(rawValue: section) else { return nil }
                 switch section {
                 case .continueListening:
-                    return continueData.isEmpty ? nil : SectionHeaderView(title: "Continue Listening")
+                    return continueData.count
                 case .trending:
-                    return trendingData.isEmpty ? nil : SectionHeaderView(title: "🔥 Trending Now")
+                    return 1
                 }
             }
 
-            func tableView(_ tableView: UITableView,
-                           heightForHeaderInSection section: Int) -> CGFloat {
-                guard let section = Section(rawValue: section) else { return 0 }
+            func tableView(
+                _ tableView: UITableView,
+                cellForRowAt indexPath: IndexPath
+            ) -> UITableViewCell {
+
+                guard let section = Section(rawValue: indexPath.section) else {
+                    return UITableViewCell()
+                }
+
                 switch section {
-                case .continueListening: return continueData.isEmpty ? 0 : Layout.headerHeight
-                case .trending:          return trendingData.isEmpty ? 0 : Layout.headerHeight
+
+                case .continueListening:
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: ContinueCell.reuseID,
+                        for: indexPath
+                    ) as! ContinueCell
+
+                    cell.configure(with: continueData[indexPath.row])
+                    return cell
+
+                case .trending:
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: TrendingCell.reuseID,
+                        for: indexPath
+                    ) as! TrendingCell
+
+                    cell.configure(with: trendingData)
+
+                    cell.onSelect = { [weak self] index in
+                        guard let self else { return }
+                        guard self.trendingData.indices.contains(index) else { return }
+                        self.openDetails(self.trendingData[index])
+                    }
+
+                    return cell
                 }
             }
 
-            func tableView(_ tableView: UITableView,
-                           didSelectRowAt indexPath: IndexPath) {
-                tableView.deselectRow(at: indexPath, animated: true)
-                guard let section = Section(rawValue: indexPath.section) else { return }
-                if section == .continueListening,
-                   continueData.indices.contains(indexPath.row) {
-                    let podcast = continueData[indexPath.row]
-                    showMiniPlayer(podcast)
-                    let vc = DetailsViewController(podcast: podcast)
-                    navigationController?.pushViewController(vc, animated: true)
+            func tableView(
+                _ tableView: UITableView,
+                heightForRowAt indexPath: IndexPath
+            ) -> CGFloat {
+                indexPath.section == 0 ? 90 : 420
+            }
+            func tableView(
+                    _ tableView: UITableView,
+                    viewForHeaderInSection section: Int
+                ) -> UIView? {
+
+                    let container = UIView()
+                    container.backgroundColor = .black
+
+                    let label = UILabel()
+                    label.textColor = .white
+                    label.font = .boldSystemFont(ofSize: 20)
+
+                    label.text = section == 0
+                        ? "Continue Listening"
+                        : "🔥 Trending Now"
+
+                    container.addSubview(label)
+                    label.translatesAutoresizingMaskIntoConstraints = false
+
+                    NSLayoutConstraint.activate([
+                        label.leadingAnchor.constraint(
+                            equalTo: container.leadingAnchor,
+                            constant: 16
+                        ),
+                        label.bottomAnchor.constraint(
+                            equalTo: container.bottomAnchor,
+                            constant: -6
+                        )
+                    ])
+
+                    return container
+                }
+
+                func tableView(
+                    _ tableView: UITableView,
+                    heightForHeaderInSection section: Int
+                ) -> CGFloat {
+                    44
                 }
             }
-        }

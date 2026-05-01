@@ -88,11 +88,9 @@
 				Home/HomeVC_Madina.swift,
 				Home/MiniPlayerView.swift,
 				Home/Models/Podcast.swift,
-				Home/Models/PodcastFull.swift,
 				Home/SectionHeaderView.swift,
 				Home/TrendingCardView.swift,
 				Home/TrendingCell.swift,
-				Home/TrendingItemCell.swift,
 				Home/View/HomeView.swift,
 				Home/View/SearchHistoryCell.swift,
 				Home/View/SearchHistoryHeaderCell.swift,
@@ -121,24 +119,51 @@
 				Home/SectionHeaderView.swift,
 				Home/TrendingCardView.swift,
 				Home/TrendingCell.swift,
-				Home/TrendingItemCell.swift,
 				Home/View/HomeView.swift,
 				Home/View/SearchHistoryCell.swift,
 				Home/View/SearchHistoryHeaderCell.swift,
 				Home/View/SearchResultCell.swift,
 				Info.plist,
 				Onboarding/OnboardingVC.swift,
-				Player/PlayerService.swift,
 				Player/PlayerViewController.swift,
 			);
 			target = D7FFD0662F8EBB6500327536 /* Networking */;
 		};
-		2B35FAB12FA0553200D93419 /* Exceptions for "Home" folder in "iPods" target */ = {
+		2B35FABB2FA243A400D93419 /* Exceptions for "Networking" folder in "iPods" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				ITunesService.swift,
+				PodcastService.swift,
 			);
 			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
+		};
+		2B35FABD2FA243F600D93419 /* Exceptions for "Home" folder in "iPods" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				HomeVC.swift,
+				PodcastFull.swift,
+				TrendingItemCell.swift,
+			);
+			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
+		};
+		2B35FABE2FA247BA00D93419 /* Exceptions for "Networking" folder in "Networking" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MiniPlayerView.swift,
+				PodcastService.swift,
+			);
+			target = D7FFD0662F8EBB6500327536 /* Networking */;
+		};
+		2B35FABF2FA2490800D93419 /* Exceptions for "Home" folder in "Networking" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				DetailsViewController.swift,
+				HomeVC.swift,
+				PodcastFull.swift,
+				SectionHeaderView.swift,
+				TrendingCell.swift,
+				TrendingItemCell.swift,
+			);
+			target = D7FFD0662F8EBB6500327536 /* Networking */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -146,7 +171,8 @@
 		2B35FA1E2F9FFA8C00D93419 /* Home */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				2B35FAB12FA0553200D93419 /* Exceptions for "Home" folder in "iPods" target */,
+				2B35FABD2FA243F600D93419 /* Exceptions for "Home" folder in "iPods" target */,
+				2B35FABF2FA2490800D93419 /* Exceptions for "Home" folder in "Networking" target */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -167,6 +193,10 @@
 		};
 		D7FFD0682F8EBB6500327536 /* Networking */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2B35FABB2FA243A400D93419 /* Exceptions for "Networking" folder in "iPods" target */,
+				2B35FABE2FA247BA00D93419 /* Exceptions for "Networking" folder in "Networking" target */,
+			);
 			path = Networking;
 			sourceTree = "<group>";
 		};

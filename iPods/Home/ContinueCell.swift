@@ -100,9 +100,9 @@ final class ContinueCell: UITableViewCell {
 
     // MARK: - Configure
 
-    func configure(with podcast: PodcastFull) {
-        titleLabel.text = podcast.title
-        authorLabel.text = podcast.author
-        progressBar.progress = podcast.progress
+    //func configure(with podcast: PodcastFull) {
+      //  titleLabel.text = podcast.title
+       // authorLabel.text = podcast.author
+       // progressBar.progress = podcast.progress
     }
-}
+//}

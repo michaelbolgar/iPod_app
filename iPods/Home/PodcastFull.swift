@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct PodcastFull {
+struct PodcastFull  {
+    
     let title: String
     let author: String
     let genre: String

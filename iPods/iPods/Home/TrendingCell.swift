@@ -97,7 +97,7 @@ extension TrendingCell: UICollectionViewDataSource, UICollectionViewDelegateFlow
         return cell
     }
 
-    // 🔥 ВАЖНО: фикс размера (без collectionView.frame!)
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {

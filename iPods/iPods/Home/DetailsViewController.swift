@@ -6,104 +6,91 @@ import UIKit
 
 final class DetailsViewController: UIViewController {
 
-    // MARK: - Data
     private let podcast: PodcastFull
 
-    // MARK: - UI
-    private let coverView: UIImageView = {
-        let iv = UIImageView()
-        iv.backgroundColor = .darkGray
-        iv.layer.cornerRadius = 16
-        iv.clipsToBounds = true
-        iv.contentMode = .scaleAspectFill
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        return iv
-    }()
+    private let imageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let authorLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private let playButton = UIButton(type: .system)
 
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .boldSystemFont(ofSize: 22)
-        label.numberOfLines = 2
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let authorLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(red: 1, green: 0.6, blue: 0.1, alpha: 1)
-        label.font = .systemFont(ofSize: 15, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let metaLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGray
-        label.font = .systemFont(ofSize: 13)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.white.withAlphaComponent(0.75)
-        label.font = .systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    // MARK: - Init
     init(podcast: PodcastFull) {
         self.podcast = podcast
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) { fatalError() }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
 
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .black
         setupUI()
         configure()
     }
 
-    // MARK: - Setup
     private func setupUI() {
-        let stack = UIStackView(arrangedSubviews: [
-            coverView, titleLabel, authorLabel, metaLabel, descriptionLabel
-        ])
-        stack.axis = .vertical
-        stack.spacing = 12
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stack)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .darkGray
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textColor = .white
+        titleLabel.font = .boldSystemFont(ofSize: 26)
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 2
+
+        authorLabel.translatesAutoresizingMaskIntoConstraints = false
+        authorLabel.textColor = .orange
+        authorLabel.textAlignment = .center
+
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.textColor = .lightGray
+        descriptionLabel.numberOfLines = 3
+        descriptionLabel.textAlignment = .center
+
+        playButton.translatesAutoresizingMaskIntoConstraints = false
+        playButton.backgroundColor = .orange
+        playButton.tintColor = .black
+        playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        playButton.layer.cornerRadius = 30
+
+        view.addSubview(imageView)
+        view.addSubview(titleLabel)
+        view.addSubview(authorLabel)
+        view.addSubview(descriptionLabel)
+        view.addSubview(playButton)
+
         NSLayoutConstraint.activate([
-            coverView.heightAnchor.constraint(equalToConstant: 260),
-            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 420),
+
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+
+            authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            authorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            descriptionLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+
+            playButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 28),
+            playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            playButton.widthAnchor.constraint(equalToConstant: 60),
+            playButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 
-    // MARK: - Configure
     private func configure() {
         titleLabel.text = podcast.title
         authorLabel.text = podcast.author
-        metaLabel.text = "⭐️ \(podcast.rating)  •  \(podcast.episodeCount) eps  •  \(podcast.genre)"
         descriptionLabel.text = podcast.description
-
-        // Загружаем обложку если есть
-        if let url = podcast.artworkURL {
-            Task {
-                if let (data, _) = try? await URLSession.shared.data(from: url),
-                   let image = UIImage(data: data) {
-                    await MainActor.run {
-                        self.coverView.image = image
-                    }
-                }
-            }
-        }
     }
 }

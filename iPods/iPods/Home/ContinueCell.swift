@@ -5,103 +5,77 @@
 //  Created by Administration  on 16/04/26.
 //
 
+
+
 import UIKit
 
 final class ContinueCell: UITableViewCell {
 
     static let reuseID = "ContinueCell"
 
-    // MARK: - Constants
-
-    private enum Layout {
-        static let coverSize: CGFloat = 56
-        static let coverCornerRadius: CGFloat = 8
-        static let horizontalPadding: CGFloat = 16
-        static let innerSpacing: CGFloat = 12
-    }
-
-    // MARK: - UI
-
-    private let coverView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .darkGray
-        view.layer.cornerRadius = Layout.coverCornerRadius
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let authorLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGray
-        label.font = .systemFont(ofSize: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let progressBar: UIProgressView = {
-        let bar = UIProgressView(progressViewStyle: .default)
-        bar.trackTintColor = UIColor.white.withAlphaComponent(0.15)
-        bar.progressTintColor = UIColor(red: 1, green: 0.6, blue: 0.1, alpha: 1) // orange
-        bar.layer.cornerRadius = 2
-        bar.clipsToBounds = true
-        bar.translatesAutoresizingMaskIntoConstraints = false
-        return bar
-    }()
-
-    // MARK: - Init
+    private let coverView = UIImageView()
+    private let titleLabel = UILabel()
+    private let authorLabel = UILabel()
+    private let progressBar = UIProgressView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         backgroundColor = .black
         selectionStyle = .none
-        setupLayout()
+
+        setupUI()
     }
 
-    required init?(coder: NSCoder) { fatalError() }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
 
-    // MARK: - Setup
+    private func setupUI() {
+        contentView.backgroundColor = UIColor(white: 0.08, alpha: 1)
+        contentView.layer.cornerRadius = 16
+        contentView.clipsToBounds = true
 
-    private func setupLayout() {
-        [coverView, titleLabel, authorLabel, progressBar].forEach {
-            contentView.addSubview($0)
-        }
+        coverView.backgroundColor = .darkGray
+        coverView.layer.cornerRadius = 12
+        coverView.clipsToBounds = true
+        coverView.translatesAutoresizingMaskIntoConstraints = false
+
+        titleLabel.textColor = .white
+        titleLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        authorLabel.textColor = .lightGray
+        authorLabel.font = .systemFont(ofSize: 12)
+        authorLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        progressBar.progressTintColor = .orange
+        progressBar.trackTintColor = .darkGray
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(coverView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(authorLabel)
+        contentView.addSubview(progressBar)
 
         NSLayoutConstraint.activate([
-            // Cover
-            coverView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                               constant: Layout.horizontalPadding),
+            coverView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             coverView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            coverView.widthAnchor.constraint(equalToConstant: Layout.coverSize),
-            coverView.heightAnchor.constraint(equalToConstant: Layout.coverSize),
+            coverView.widthAnchor.constraint(equalToConstant: 64),
+            coverView.heightAnchor.constraint(equalToConstant: 64),
 
-            // Title
             titleLabel.topAnchor.constraint(equalTo: coverView.topAnchor, constant: 4),
-            titleLabel.leadingAnchor.constraint(equalTo: coverView.trailingAnchor,
-                                                constant: Layout.innerSpacing),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                  constant: -Layout.horizontalPadding),
+            titleLabel.leadingAnchor.constraint(equalTo: coverView.trailingAnchor, constant: 12),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
-            // Author
             authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             authorLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
 
-            // Progress
-            progressBar.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8),
+            progressBar.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 10),
             progressBar.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            progressBar.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            progressBar.heightAnchor.constraint(equalToConstant: 3)
+            progressBar.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
         ])
     }
-
-    // MARK: - Configure
 
     func configure(with podcast: PodcastFull) {
         titleLabel.text = podcast.title
@@ -109,4 +83,3 @@ final class ContinueCell: UITableViewCell {
         progressBar.progress = podcast.progress
     }
 }
-
