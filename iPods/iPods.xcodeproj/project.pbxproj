@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		D7AA000A2F9AA70000000001 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
-		D7FFB4E02FA0E0FD003BAE33 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D7FFB4DF2FA0E0FD003BAE33 /* Secrets.xcconfig */; };
 		D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F11F5AED2F9B9BD400FD3E90 /* ListeningData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */; };
 		F11F5AEE2F9B9BD400FD3E90 /* ListeningData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F4538EFB2FA36EEB00CC2900 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F4538EFA2FA36EEB00CC2900 /* Secrets.xcconfig */; };
 		F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F4ACAFE02F981BC8003E8500 /* SnapKit */; };
 		F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; };
 		F4AF36912F92F73B00BD1678 /* DesignSys.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -67,10 +67,10 @@
 
 /* Begin PBXFileReference section */
 		D7AA00012F9AA70000000003 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7FFB4DF2FA0E0FD003BAE33 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		D7FFD0672F8EBB6500327536 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ListeningData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40DD4AD2F8D818C00D25F9E /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4538EFA2FA36EEB00CC2900 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		F4AF367D2F92F73B00BD1678 /* DesignSys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -168,7 +168,7 @@
 				F4AF367E2F92F73B00BD1678 /* DesignSys */,
 				F11F5AE62F9B9BD400FD3E90 /* ListeningData */,
 				F40DD4AE2F8D818C00D25F9E /* Products */,
-				D7FFB4DF2FA0E0FD003BAE33 /* Secrets.xcconfig */,
+				F4538EFA2FA36EEB00CC2900 /* Secrets.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -410,6 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4538EFB2FA36EEB00CC2900 /* Secrets.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,7 +418,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7FFB4E02FA0E0FD003BAE33 /* Secrets.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +765,7 @@
 		};
 		F40DD4C22F8D818D00D25F9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4538EFA2FA36EEB00CC2900 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -803,7 +804,7 @@
 		};
 		F40DD4C32F8D818D00D25F9E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7FFB4DF2FA0E0FD003BAE33 /* Secrets.xcconfig */;
+			baseConfigurationReference = F4538EFA2FA36EEB00CC2900 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -869,7 +870,6 @@
 		};
 		F40DD4C42F8D818D00D25F9E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7FFB4DF2FA0E0FD003BAE33 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
