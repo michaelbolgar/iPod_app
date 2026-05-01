@@ -5,13 +5,14 @@
 //  Created by Administration  on 17/04/26.
 //
 
-import UIKit
-struct Podcast {
+import Foundation
+
+struct Podcast: Identifiable {
+    let id: Int
     let title: String
     let author: String
-    let genre: String
+    let description: String
     let rating: Double
     let episodeCount: Int
-    let description: String
-    var progress: Float 
+    let genre: String
 }

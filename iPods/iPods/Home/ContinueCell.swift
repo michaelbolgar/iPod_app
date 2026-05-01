@@ -11,102 +11,74 @@ final class ContinueCell: UITableViewCell {
 
     static let reuseID = "ContinueCell"
 
-    // MARK: - Constants
-
     private enum Layout {
         static let coverSize: CGFloat = 56
-        static let coverCornerRadius: CGFloat = 8
-        static let horizontalPadding: CGFloat = 16
-        static let innerSpacing: CGFloat = 12
+        static let padding: CGFloat = 16
+        static let spacing: CGFloat = 12
     }
 
-    // MARK: - UI
-
     private let coverView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .darkGray
-        view.layer.cornerRadius = Layout.coverCornerRadius
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        let v = UIView()
+        v.backgroundColor = .darkGray
+        v.layer.cornerRadius = 8
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
     }()
 
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let authorLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGray
-        label.font = .systemFont(ofSize: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let progressBar: UIProgressView = {
-        let bar = UIProgressView(progressViewStyle: .default)
-        bar.trackTintColor = UIColor.white.withAlphaComponent(0.15)
-        bar.progressTintColor = UIColor(red: 1, green: 0.6, blue: 0.1, alpha: 1) // orange
-        bar.layer.cornerRadius = 2
-        bar.clipsToBounds = true
-        bar.translatesAutoresizingMaskIntoConstraints = false
-        return bar
-    }()
-
-    // MARK: - Init
+    private let titleLabel = UILabel()
+    private let authorLabel = UILabel()
+    private let progressBar = UIProgressView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         backgroundColor = .black
         selectionStyle = .none
-        setupLayout()
-    }
 
-    required init?(coder: NSCoder) { fatalError() }
+        titleLabel.textColor = .white
+        titleLabel.font = .systemFont(ofSize: 14, weight: .semibold)
 
-    // MARK: - Setup
+        authorLabel.textColor = .lightGray
+        authorLabel.font = .systemFont(ofSize: 12)
 
-    private func setupLayout() {
+        progressBar.progressTintColor = .orange
+        progressBar.trackTintColor = UIColor.white.withAlphaComponent(0.1)
+
         [coverView, titleLabel, authorLabel, progressBar].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
 
         NSLayoutConstraint.activate([
-            // Cover
-            coverView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                               constant: Layout.horizontalPadding),
+            coverView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Layout.padding),
             coverView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             coverView.widthAnchor.constraint(equalToConstant: Layout.coverSize),
             coverView.heightAnchor.constraint(equalToConstant: Layout.coverSize),
 
-            // Title
-            titleLabel.topAnchor.constraint(equalTo: coverView.topAnchor, constant: 4),
-            titleLabel.leadingAnchor.constraint(equalTo: coverView.trailingAnchor,
-                                                constant: Layout.innerSpacing),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                  constant: -Layout.horizontalPadding),
+            titleLabel.topAnchor.constraint(equalTo: coverView.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: coverView.trailingAnchor, constant: Layout.spacing),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Layout.padding),
 
-            // Author
             authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             authorLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
 
-            // Progress
             progressBar.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8),
             progressBar.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            progressBar.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            progressBar.heightAnchor.constraint(equalToConstant: 3)
+            progressBar.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
         ])
     }
 
-    // MARK: - Configure
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
 
-    func configure(with podcast: Podcast) {
-        titleLabel.text = podcast.title
-        authorLabel.text = podcast.author
-        progressBar.progress = podcast.progress
+    // MARK: - FIXED CONFIG
+
+    func configure(with model: Podcast) {
+        titleLabel.text = model.title
+        authorLabel.text = model.author
+
+        // если прогресса пока нет в модели — временно 0
+        progressBar.progress = 0.3
     }
 }
-

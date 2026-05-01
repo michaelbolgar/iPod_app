@@ -11,46 +11,31 @@ final class TrendingCell: UITableViewCell {
 
     static let reuseID = "TrendingCell"
 
-    // MARK: - Callbacks
-    var onSelect: ((Int) -> Void)? //for conflicts lmao
+    var onSelect: ((Podcast) -> Void)?
 
-    // MARK: - UI
-    private let collectionView: UICollectionView
-
-    // MARK: - Data
     private var data: [Podcast] = []
 
-    // MARK: - Init
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 12
+        layout.minimumLineSpacing = 12
 
-        let spacing: CGFloat = 12
-        layout.minimumLineSpacing = spacing
-        layout.minimumInteritemSpacing = spacing
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .black
+        cv.isScrollEnabled = false
+        cv.dataSource = self
+        cv.delegate = self
+        cv.register(TrendingItemCell.self, forCellWithReuseIdentifier: TrendingItemCell.reuseID)
+        return cv
+    }()
 
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
-    }
 
-    required init?(coder: NSCoder) { fatalError() }
-
-    // MARK: - Setup
-    private func setupUI() {
         backgroundColor = .black
-        contentView.backgroundColor = .black
-
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .black
-        collectionView.isScrollEnabled = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(TrendingItemCell.self,
-                                forCellWithReuseIdentifier: TrendingItemCell.reuseID)
 
         contentView.addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
@@ -60,19 +45,19 @@ final class TrendingCell: UITableViewCell {
         ])
     }
 
-    // MARK: - Configure
+    required init?(coder: NSCoder) { fatalError() }
+
     func configure(with data: [Podcast]) {
         self.data = data
         collectionView.reloadData()
     }
 }
 
-// MARK: - UICollectionView
+// MARK: - Collection
 
 extension TrendingCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         data.count
     }
 
@@ -81,6 +66,7 @@ extension TrendingCell: UICollectionViewDataSource, UICollectionViewDelegateFlow
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: TrendingItemCell.reuseID,
             for: indexPath) as! TrendingItemCell
+
         cell.configure(with: data[indexPath.item])
         return cell
     }
@@ -88,14 +74,13 @@ extension TrendingCell: UICollectionViewDataSource, UICollectionViewDelegateFlow
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
+
         let spacing: CGFloat = 12
         let width = (collectionView.frame.width - spacing) / 2
-        return CGSize(width: width, height: width + 40)
+        return CGSize(width: width, height: width + 50)
     }
 
-    // тап по каточке
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
-        onSelect?(indexPath.item)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        onSelect?(data[indexPath.item])
     }
 }

@@ -51,16 +51,6 @@
 		F4AF367D2F92F73B00BD1678 /* DesignSys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F40DD4BF2F8D818D00D25F9E /* Exceptions for "iPods" folder in "iPods" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D7FFD0682F8EBB6500327536 /* Networking */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -69,9 +59,6 @@
 		};
 		F40DD4AF2F8D818C00D25F9E /* iPods */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				F40DD4BF2F8D818D00D25F9E /* Exceptions for "iPods" folder in "iPods" target */,
-			);
 			path = iPods;
 			sourceTree = "<group>";
 		};
