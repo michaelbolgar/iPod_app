@@ -31,16 +31,15 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     
     // MARK: - Data
     let continueData: [PodcastFull] = [
-        PodcastFull(title: "The Creative Mind", author: "Sarah Johnson",
+        PodcastFull(id: 1, title: "The Creative Mind", author: "Sarah Johnson",
                     genre: "Arts", rating: 4.7, episodeCount: 89,
                     description: "Exploring creativity in all its forms.", progress: 0.6),
-        PodcastFull(title: "Deep Conversations", author: "Marcus Chen",
+        PodcastFull(id: 2, title: "Deep Conversations", author: "Marcus Chen",
                     genre: "Society", rating: 4.5, episodeCount: 120,
                     description: "Meaningful dialogues with thought leaders.", progress: 0.3)
     ]
 
     var trendingData: [PodcastFull] = []
-  
   
     // MARK: - Lifecycle
     override func viewDidLoad() {
