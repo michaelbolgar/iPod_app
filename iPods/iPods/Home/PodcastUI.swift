@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct PodcastUI {
-    let podcast: Podcast
-    let progress: Double
+struct PodcastUI: Identifiable {
+    let id: Int
+    let title: String
+    let author: String
+    let description: String
+    let episodeCount: Int
+    let genre: String
+    let imageURL: URL?
 }

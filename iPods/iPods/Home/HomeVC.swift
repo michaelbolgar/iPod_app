@@ -10,7 +10,7 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class HomeViewController: UIViewController {
 
     // MARK: - Sections
 
@@ -34,7 +34,6 @@ final class HomeViewController: UIViewController, UITableViewDataSource, UITable
     private var miniPlayerBottom: NSLayoutConstraint!
 
     // MARK: - Data
-
     private var continueData: [Podcast] = []
     private var trendingData: [Podcast] = []
 
@@ -131,10 +130,6 @@ final class HomeViewController: UIViewController, UITableViewDataSource, UITable
             miniPlayer.heightAnchor.constraint(equalToConstant: 64),
             miniPlayerBottom
         ])
-
-        miniPlayer.onPlay = {
-            print("play tapped")
-        }
     }
 
     // MARK: - Data
@@ -150,137 +145,149 @@ final class HomeViewController: UIViewController, UITableViewDataSource, UITable
             trendingData = try await service.fetchTrending()
 
             await MainActor.run {
-                tableView.reloadData()
-                            }
-                        } catch {
-                            print("❌ trending error:", error)
-                        }
-                    }
-
-                    // MARK: - Mini Player
-
-                    private func showMiniPlayer(with podcast: Podcast) {
-                        miniPlayer.configure(with: podcast)
-                        miniPlayer.isHidden = false
-
-                        miniPlayerBottom.constant = -8
-
-                        UIView.animate(withDuration: 0.3) {
-                            self.view.layoutIfNeeded()
-                        }
-                    }
-
-                    // MARK: - UITableViewDataSource
-
-                    func numberOfSections(in tableView: UITableView) -> Int {
-                        Section.allCases.count
-                    }
-
-                    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-                        guard let section = Section(rawValue: section) else { return 0 }
-
-                        switch section {
-                        case .continueListening:
-                            return continueData.count
-                        case .trending:
-                            return trendingData.isEmpty ? 0 : 1
-                        }
-                    }
-
-                    func tableView(_ tableView: UITableView,
-                                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-                        guard let section = Section(rawValue: indexPath.section) else {
-                            return UITableViewCell()
-                        }
-
-                        switch section {
-
-                        case .continueListening:
-                            let cell = tableView.dequeueReusableCell(
-                                withIdentifier: ContinueCell.reuseID,
-                                for: indexPath
-                            ) as! ContinueCell
-
-                            cell.configure(with: continueData[indexPath.row])
-                            return cell
-
-                        case .trending:
-                            let cell = tableView.dequeueReusableCell(
-                                withIdentifier: TrendingCell.reuseID,
-                                for: indexPath
-                            ) as! TrendingCell
-
-                            cell.configure(with: trendingData)
-
-                            cell.onSelect = { [weak self] podcast in
-                                guard let self else { return }
-
-                                self.showMiniPlayer(with: podcast)
-
-                                let vc = DetailsViewController(podcast: podcast)
-                                self.navigationController?.pushViewController(vc, animated: true)
-                            }
-
-                            return cell
-                        }
-                    }
-
-                    func tableView(_ tableView: UITableView,
-                                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-
-                        guard let section = Section(rawValue: indexPath.section) else { return 0 }
-
-                        switch section {
-                        case .continueListening:
-                            return Layout.continueHeight
-
-                        case .trending:
-                            let width = UIScreen.main.bounds.width - 32
-                            let cardWidth = (width - 12) / 2
-                            let cardHeight = cardWidth + 50
-
-                            return (cardHeight * 2) + 12 + 24
-                        }
-                    }
-
-                    func tableView(_ tableView: UITableView,
-                                   viewForHeaderInSection section: Int) -> UIView? {
-
-                        guard let section = Section(rawValue: section) else { return nil }
-
-                        switch section {
-                        case .continueListening:
-                            return continueData.isEmpty ? nil : SectionHeaderView(title: "Continue Listening")
-                        case .trending:
-                            return SectionHeaderView(title: "🔥 Trending Now")
-                        }
-                    }
-
-                    func tableView(_ tableView: UITableView,
-                                   heightForHeaderInSection section: Int) -> CGFloat {
-                        Layout.headerHeight
-                    }
-
-                    func tableView(_ tableView: UITableView,
-                                   didSelectRowAt indexPath: IndexPath) {
-
-                        tableView.deselectRow(at: indexPath, animated: true)
-
-                        guard let section = Section(rawValue: indexPath.section) else { return }
-
-                        switch section {
-                        case .continueListening:
-                            let model = continueData[indexPath.row]
-
-                            showMiniPlayer(with: model)
-
-                            let vc = DetailsViewController(podcast: model)
-                            navigationController?.pushViewController(vc, animated: true)
-
-                        case .trending:
-                            break
-                        }
-                    }
+                self.tableView.reloadData()
+            }
+        } catch {
+                    print("❌ trending error:", error)
                 }
+            }
+
+            // MARK: - Mini Player
+
+            private func showMiniPlayer(with model: Podcast) {
+                miniPlayer.configure(with: model)
+                miniPlayer.isHidden = false
+
+                miniPlayerBottom.constant = -8
+
+                UIView.animate(withDuration: 0.3) {
+                    self.view.layoutIfNeeded()
+                }
+            }
+
+            // MARK: - Navigation
+
+            private func openPodcast(_ model: Podcast) {
+                showMiniPlayer(with: model)
+
+                //let vc = DetailsViewController(podcast: model)
+                let vc = DetailsViewController(podcast: PodcastMapper.toFull(model))
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        Section.allCases.count
+    }
+
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+
+        guard let section = Section(rawValue: section) else { return 0 }
+
+        switch section {
+        case .continueListening:
+            return continueData.count
+        case .trending:
+            return trendingData.isEmpty ? 0 : 1
+        }
+    }
+
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        guard let section = Section(rawValue: indexPath.section) else {
+            return UITableViewCell()
+        }
+
+        switch section {
+
+        case .continueListening:
+
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: ContinueCell.reuseID,
+                for: indexPath
+            ) as? ContinueCell else {
+                return UITableViewCell()
+            }
+
+            guard indexPath.row < continueData.count else { return cell }
+
+            cell.configure(with: continueData[indexPath.row])
+            return cell
+
+        case .trending:
+
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: TrendingCell.reuseID,
+                for: indexPath
+            ) as? TrendingCell else {
+                return UITableViewCell()
+            }
+
+            cell.configure(with: trendingData)
+
+            cell.onSelect = { [weak self] podcast in
+                self?.openPodcast(podcast)
+            }
+
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        guard let section = Section(rawValue: indexPath.section) else { return 0 }
+
+        switch section {
+        case .continueListening:
+            return Layout.continueHeight
+
+        case .trending:
+            let width = UIScreen.main.bounds.width - 32
+            let cardWidth = (width - 12) / 2
+            let cardHeight = cardWidth + 50
+
+            return (cardHeight * 2) + 12 + 24
+        }
+    }
+
+    func tableView(_ tableView: UITableView,
+                   viewForHeaderInSection section: Int) -> UIView? {
+
+        guard let section = Section(rawValue: section) else { return nil }
+
+        switch section {
+        case .continueListening:
+            return continueData.isEmpty ? nil : SectionHeaderView(title: "Continue Listening")
+        case .trending:
+            return SectionHeaderView(title: "🔥 Trending Now")
+        }
+    }
+
+    func tableView(_ tableView: UITableView,
+                   heightForHeaderInSection section: Int) -> CGFloat {
+        Layout.headerHeight
+    }
+
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        guard let section = Section(rawValue: indexPath.section) else { return }
+
+        switch section {
+
+        case .continueListening:
+            guard indexPath.row < continueData.count else { return }
+            let model = continueData[indexPath.row]
+            openPodcast(model)
+
+        case .trending:
+            break
+        }
+    }
+}

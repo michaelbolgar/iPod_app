@@ -25,7 +25,8 @@ final class TrendingCell: UITableViewCell {
         cv.isScrollEnabled = false
         cv.dataSource = self
         cv.delegate = self
-        cv.register(TrendingItemCell.self, forCellWithReuseIdentifier: TrendingItemCell.reuseID)
+        cv.register(TrendingItemCell.self,
+                    forCellWithReuseIdentifier: TrendingItemCell.reuseID)
         return cv
     }()
 
@@ -33,6 +34,7 @@ final class TrendingCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         backgroundColor = .black
+        selectionStyle = .none
 
         contentView.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,27 +47,33 @@ final class TrendingCell: UITableViewCell {
         ])
     }
 
-    required init?(coder: NSCoder) { fatalError() }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
+    // MARK: - Config
 
     func configure(with data: [Podcast]) {
         self.data = data
         collectionView.reloadData()
     }
 }
-
-// MARK: - Collection
-
 extension TrendingCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         data.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
+
+        guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: TrendingItemCell.reuseID,
-            for: indexPath) as! TrendingItemCell
+            for: indexPath
+        ) as? TrendingItemCell else {
+            return UICollectionViewCell()
+        }
 
         cell.configure(with: data[indexPath.item])
         return cell
@@ -80,7 +88,9 @@ extension TrendingCell: UICollectionViewDataSource, UICollectionViewDelegateFlow
         return CGSize(width: width, height: width + 50)
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+
         onSelect?(data[indexPath.item])
     }
 }
