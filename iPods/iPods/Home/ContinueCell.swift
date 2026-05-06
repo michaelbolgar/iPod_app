@@ -106,7 +106,7 @@ final class ContinueCell: UITableViewCell {
     func configure(with podcast: PodcastFull) {
         titleLabel.text = podcast.title
         authorLabel.text = podcast.author
-        progressBar.progress = podcast.progress
+        progressBar.progress = Float(podcast.progress)
     }
 }
 

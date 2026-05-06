@@ -30,15 +30,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     let searchBar = UISearchBar()
     
     // MARK: - Data
-    let continueData: [PodcastFull] = [
-        PodcastFull(id: 1, title: "The Creative Mind", author: "Sarah Johnson",
-                    genre: "Arts", rating: 4.7, episodeCount: 89,
-                    description: "Exploring creativity in all its forms.", progress: 0.6),
-        PodcastFull(id: 2, title: "Deep Conversations", author: "Marcus Chen",
-                    genre: "Society", rating: 4.5, episodeCount: 120,
-                    description: "Meaningful dialogues with thought leaders.", progress: 0.3)
-    ]
-
+    let continueData: [PodcastFull] = []
     var trendingData: [PodcastFull] = []
   
     // MARK: - Lifecycle
@@ -62,6 +54,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                 let podcasts = try await service.getTrending(max: 10)
                 let mapped = podcasts.map { podcast in
                     PodcastFull(
+                        id: podcast.id,
                         title: podcast.title,
                         author: podcast.author ?? "",
                         genre: "",
@@ -79,6 +72,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                 }
             } catch {
                 // network or decoding error — trending stays empty
+                print("trending is empty")
             }
         }
     }
