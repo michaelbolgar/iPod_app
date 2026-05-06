@@ -5,12 +5,7 @@ final class HomeVC_Matin: UIViewController {
 
     private var homeView: HomeView { view as! HomeView }
 
-    private let allPodcasts: [Podcast] = [
-        Podcast(title: "The Creative Mind", author: "Sarah Johnson"),
-        Podcast(title: "Deep Conversations", author: "Marcus Chen"),
-        Podcast(title: "Floyymenor Gata Only", author: "Ft.Criss Mj"),
-        Podcast(title: "Jet", author: "Macan")
-    ]
+    private let allPodcasts: [Podcast] = []
 
     private var filteredPodcasts: [Podcast] = []
     private var searchHistory: [String] = []

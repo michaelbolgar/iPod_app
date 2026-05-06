@@ -112,13 +112,15 @@ class ShareTestViewController: UIViewController {
                 // Convert API model to PodcastFull
                                 self.podcast = PodcastFull(
                                     id: apiPodcast.id,
-                                    title: apiPodcast.title ?? "No title",
+                                    title: apiPodcast.title,
                                     author: apiPodcast.author ?? "Unknown author",
                                     genre: "",
                                     rating: 0,
                                     episodeCount: 0,
                                     description: "",
-                                    progress: 0
+                                    progress: 0,
+                                    artworkURL: URL(string: ""),
+                                    feedID: 0
                                 )
                                 
                                 await MainActor.run {
