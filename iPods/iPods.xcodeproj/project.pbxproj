@@ -78,6 +78,7 @@
 		F10278F12FA391C1001004DF /* Exceptions for "Share" folder in "DesignSys" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				ShareService.swift,
 				ShareTestViewController.swift,
 			);
 			target = F4AF367C2F92F73B00BD1678 /* DesignSys */;
@@ -85,6 +86,7 @@
 		F10278F32FA391C4001004DF /* Exceptions for "Share" folder in "iPods" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				ShareService.swift,
 				ShareTestViewController.swift,
 			);
 			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
