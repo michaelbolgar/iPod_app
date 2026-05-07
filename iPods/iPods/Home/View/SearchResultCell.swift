@@ -23,6 +23,8 @@ final class SearchResultCell: UITableViewCell {
 
     private let titleLabel = DesignFactory.makePrimaryLabel(text: "", size: 16)
     private let authorLabel = DesignFactory.makeSecondaryLabel(text: "", size: 13)
+    private var imageTask: URLSessionDataTask?
+    private var currentImageURL: URL?
 
     private let separatorLine: UIView = {
         let v = UIView()
@@ -70,8 +72,27 @@ final class SearchResultCell: UITableViewCell {
         }
     }
 
-    func configure(title: String, author: String) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageTask?.cancel()
+        imageTask = nil
+        currentImageURL = nil
+        podcastImageView.image = nil
+    }
+
+    func configure(title: String, author: String, artworkURL: URL? = nil) {
         titleLabel.text = title
         authorLabel.text = author
+        currentImageURL = artworkURL
+
+        guard let url = artworkURL else { return }
+        imageTask = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
+            guard let self, let data, let image = UIImage(data: data) else { return }
+            guard self.currentImageURL == url else { return }
+            DispatchQueue.main.async {
+                self.podcastImageView.image = image
+            }
+        }
+        imageTask?.resume()
     }
 }
