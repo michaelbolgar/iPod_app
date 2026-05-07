@@ -13,6 +13,8 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     private enum Layout {
         static let continueCellHeight: CGFloat = 88
         static let headerHeight: CGFloat = 44
+        static let searchResultCellHeight: CGFloat = 76
+        static let searchHistoryCellHeight: CGFloat = 44
     }
     
     // MARK: - UI
@@ -21,9 +23,9 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     private var miniPlayerBottom: NSLayoutConstraint!
 
     // MARK: - Services
-
-    private let podcastService = try? PodcastService()
+    let podcastService = try? PodcastService()
     private var episodeLoadTask: Task<Void, Never>?
+    var searchTask: Task<Void, Never>?
     
     var filteredPodcasts: [PodcastFull] = []
     var searchHistory: [String] = []
@@ -32,7 +34,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     // MARK: - Data
     let continueData: [PodcastFull] = []
     var trendingData: [PodcastFull] = []
-  
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,16 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
         setupSearchViews()
         addKeyboardDismissGesture()
         loadTrending()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = resultsTableView.indexPathForSelectedRow {
+            resultsTableView.deselectRow(at: indexPath, animated: animated)
+        }
+        if let indexPath = historyTableView.indexPathForSelectedRow {
+            historyTableView.deselectRow(at: indexPath, animated: animated)
+        }
     }
 
     private func loadTrending() {
@@ -72,12 +84,11 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                 }
             } catch {
                 // network or decoding error — trending stays empty
-                print("trending is empty")
             }
         }
     }
 
-    private func loadEpisodesAndPlay(for podcast: PodcastFull) {
+    func loadEpisodesAndPlay(for podcast: PodcastFull) {
         guard let feedID = podcast.feedID, let service = podcastService else { return }
         episodeLoadTask?.cancel()
         episodeLoadTask = Task {
@@ -114,12 +125,11 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.contentInsetAdjustmentBehavior = .automatic
+        tableView.keyboardDismissMode = .onDrag
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ContinueCell.self, forCellReuseIdentifier: ContinueCell.reuseID)
         tableView.register(TrendingCell.self, forCellReuseIdentifier: TrendingCell.reuseID)
-        //tableView.tableHeaderView = makeSearchBar()
-        
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -129,8 +139,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-    
-    
+
     private func setupSearchBar() {
         searchBar.placeholder = "Search podcasts..."
         searchBar.searchBarStyle = .minimal
@@ -164,13 +173,16 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
             miniPlayerBottom
         ])
         
-        miniPlayer.onPlay = {
-            print("play tapped")
-        }
+        miniPlayer.onPlay = { }
     }
     
+    // MARK: - Keyboard
+    @objc override func dismissKeyboard() {
+        searchBar.resignFirstResponder()
+    }
+
     // MARK: - Mini Player
-    private func showMiniPlayer(with podcast: PodcastFull) {
+    func showMiniPlayer(with podcast: PodcastFull) {
         miniPlayer.configure(with: podcast)
         miniPlayer.isHidden = false
         miniPlayerBottom.constant = -8
@@ -190,7 +202,10 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
 extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        Section.allCases.count
+        if tableView === resultsTableView || tableView === historyTableView {
+            return 1
+        }
+        return Section.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -235,29 +250,36 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView === resultsTableView { return Layout.searchResultCellHeight }
+        if tableView === historyTableView { return Layout.searchHistoryCellHeight }
         guard let section = Section(rawValue: indexPath.section) else { return 0 }
         switch section {
         case .continueListening:
             return Layout.continueCellHeight
         case .trending:
             let cardWidth = (UIScreen.main.bounds.width - 32 - 12) / 2
-            let cardHeight = cardWidth + 50
-            return (cardHeight * 2) + 12 + 24
+            let cardHeight = cardWidth + 40
+            let rows = CGFloat((trendingData.count + 1) / 2)
+            return (cardHeight * rows) + (12 * (rows - 1)) + 24
         }
     }
     
     func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView? {
+        if tableView === resultsTableView || tableView === historyTableView { return nil }
         guard let section = Section(rawValue: section) else { return nil }
         switch section {
         case .continueListening: return SectionHeaderView(title: "Continue Listening")
         case .trending: return SectionHeaderView(title: "🔥 Trending Now")
         }
     }
-    
+
     func tableView(_ tableView: UITableView,
                    heightForHeaderInSection section: Int) -> CGFloat {
-        Layout.headerHeight
+        if tableView === resultsTableView || tableView === historyTableView {
+            return .leastNormalMagnitude
+        }
+        return Layout.headerHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

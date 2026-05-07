@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Networking
 
 // MARK: - Search UI Setup
 extension HomeVC_Madina {
@@ -23,12 +24,14 @@ extension HomeVC_Madina {
         
         resultsTableView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
-        
+
         historyTableView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
         
         emptyStateView.snp.makeConstraints {
@@ -142,34 +145,65 @@ extension HomeVC_Madina {
         } completion: { [weak self] _ in
             guard let self else { return }
             self.tableView.isHidden = true
-            if !self.searchHistory.isEmpty {
+            let currentText = self.searchBar.text?.trimmingCharacters(in: .whitespaces) ?? ""
+            if currentText.isEmpty && !self.searchHistory.isEmpty {
                 self.showHistoryState()
             }
         }
     }
     
     func deactivateSearch() {
+        searchTask?.cancel()
         filteredPodcasts = []
         showHomeState()
     }
     
     func performSearch(query: String) {
         let trimmed = query.trimmingCharacters(in: .whitespaces)
-        
+
+        searchTask?.cancel()
+
         if trimmed.isEmpty {
+            filteredPodcasts = []
             if !searchHistory.isEmpty {
                 showHistoryState()
+            } else {
+                resultsTableView.isHidden = true
+                emptyStateView.isHidden = true
             }
             return
         }
-        
-        let all = continueData + trendingData
-        filteredPodcasts = all.filter {
-            $0.title.lowercased().contains(trimmed.lowercased()) ||
-            $0.author.lowercased().contains(trimmed.lowercased())
+
+        guard let service = podcastService else { return }
+
+        searchTask = Task { [weak self] in
+            guard let self else { return }
+            do {
+                try await Task.sleep(nanoseconds: 300_000_000)
+                let podcasts = try await service.doSearch(query: trimmed)
+                guard !Task.isCancelled else { return }
+                let mapped = podcasts.map { podcast in
+                    PodcastFull(
+                        id: 0,
+                        title: podcast.title,
+                        author: podcast.author ?? "",
+                        genre: "",
+                        rating: 0,
+                        episodeCount: 0,
+                        description: "",
+                        progress: 0,
+                        artworkURL: podcast.imageURL,
+                        feedID: podcast.id
+                    )
+                }
+                await MainActor.run {
+                    self.filteredPodcasts = mapped
+                    mapped.isEmpty ? self.showEmptyState() : self.showResultsState()
+                }
+            } catch {
+                // network or decoding error — results stay empty
+            }
         }
-        
-        filteredPodcasts.isEmpty ? showEmptyState() : showResultsState()
     }
     
     func saveToHistory(_ query: String) {
@@ -200,6 +234,8 @@ extension HomeVC_Madina {
            !query.trimmingCharacters(in: .whitespaces).isEmpty {
             saveToHistory(query)
         }
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
         deactivateSearch()
     }
@@ -215,12 +251,13 @@ extension HomeVC_Madina {
     
     func searchCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         if tableView === resultsTableView {
+            guard indexPath.row < filteredPodcasts.count else { return UITableViewCell() }
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: SearchResultCell.reuseID,
                 for: indexPath
             ) as! SearchResultCell
-            cell.configure(title: filteredPodcasts[indexPath.row].title,
-                           author: filteredPodcasts[indexPath.row].author)
+            let podcast = filteredPodcasts[indexPath.row]
+            cell.configure(title: podcast.title, author: podcast.author, artworkURL: podcast.artworkURL)
             return cell
         } else {
             if indexPath.row == 0 {
@@ -229,6 +266,7 @@ extension HomeVC_Madina {
                     for: indexPath
                 ) as! SearchHistoryHeaderCell
             } else {
+                guard indexPath.row - 1 < searchHistory.count else { return UITableViewCell() }
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: SearchHistoryCell.reuseID,
                     for: indexPath
@@ -241,11 +279,16 @@ extension HomeVC_Madina {
     
     func searchDidSelect(in tableView: UITableView, at indexPath: IndexPath) {
         if tableView === resultsTableView {
+            guard indexPath.row < filteredPodcasts.count else { return }
             let podcast = filteredPodcasts[indexPath.row]
+            showMiniPlayer(with: podcast)
+            loadEpisodesAndPlay(for: podcast)
             let vc = DetailsViewController(podcast: podcast)
             navigationController?.pushViewController(vc, animated: true)
         } else if tableView === historyTableView && indexPath.row > 0 {
             let query = searchHistory[indexPath.row - 1]
+            searchBar.text = query
+            searchBar.setShowsCancelButton(true, animated: true)
             performSearch(query: query)
         }
     }
