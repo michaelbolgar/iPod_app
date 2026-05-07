@@ -84,7 +84,6 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                 }
             } catch {
                 // network or decoding error — trending stays empty
-                print("trending is empty")
             }
         }
     }
@@ -259,8 +258,9 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
             return Layout.continueCellHeight
         case .trending:
             let cardWidth = (UIScreen.main.bounds.width - 32 - 12) / 2
-            let cardHeight = cardWidth + 50
-            return (cardHeight * 2) + 12 + 24
+            let cardHeight = cardWidth + 40
+            let rows = CGFloat((trendingData.count + 1) / 2)
+            return (cardHeight * rows) + (12 * (rows - 1)) + 24
         }
     }
     
