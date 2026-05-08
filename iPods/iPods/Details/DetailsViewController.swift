@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 final class DetailsViewController: UIViewController {
     
     // MARK: - Properties

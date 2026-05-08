@@ -17,6 +17,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     
     // MARK: - UI
     let tableView = UITableView(frame: .zero, style: .plain)
+   // private let miniPlayer = HomeVClayerView()
     private let miniPlayer = MiniPlayerView()
     private var miniPlayerBottom: NSLayoutConstraint!
 
@@ -30,21 +31,91 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     let searchBar = UISearchBar()
     
     // MARK: - Data
-    let continueData: [PodcastFull] = []
+    var continueData: [PodcastFull] = []
     var trendingData: [PodcastFull] = []
   
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(refreshContinueListening),
+            name: NSNotification.Name("continueListeningUpdated"),
+            object: nil
+        )
+        
         view.backgroundColor = .black
         setupNavigationBar()
         setupSearchBar()
         setupTableView()
+        
         setupMiniPlayer()
         setupSearchViews()
         addKeyboardDismissGesture()
         loadTrending()
     }
+
+    @objc private func refreshContinueListening() {
+        loadContinueListening()
+    }
+
+    deinit {
+       
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func loadContinueListening() {
+        Task { [weak self] in
+            guard let self else { return }
+
+            let historyItems = ContinueListeningService.shared.load()
+            print("History items count: \(historyItems.count)")
+
+            var items: [PodcastFull] = []
+
+            for item in historyItems {
+                do {
+                    guard let apiPodcast = try await podcastService?.getPodcastByID(item.podcastId) else {
+                        continue
+                    }
+
+                    let podcastFull = PodcastFull(
+                        id: apiPodcast.id,
+                        title: apiPodcast.title,
+                        author: apiPodcast.author ?? "",
+                        genre: "",
+                        rating: 0,
+                        episodeCount: 0,
+                        description: "",
+                        progress: Double(item.progress),
+
+                        
+                        artworkURL: apiPodcast.imageURL,
+
+                        feedID: apiPodcast.id
+                    )
+
+                    print(type(of: apiPodcast.imageURL))
+                    print(type(of: podcastFull.artworkURL))
+                    
+                    items.append(podcastFull)
+
+                } catch {
+                    print("❌ Failed to load podcast \(item.podcastId): \(error)")
+                }
+            }
+
+            await MainActor.run {
+                self.continueData = items
+                self.tableView.reloadData()
+
+                print("Continue listening loaded: \(items.count) items")
+            }
+        }
+    }
+    
 
     private func loadTrending() {
         guard let service = podcastService else { return }
@@ -69,26 +140,41 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                 await MainActor.run {
                     self.trendingData = mapped
                     self.tableView.reloadData()
+                
+                    self.loadContinueListening()
                 }
             } catch {
-                // network or decoding error — trending stays empty
                 print("trending is empty")
             }
         }
     }
-
+    
+   
+    
     private func loadEpisodesAndPlay(for podcast: PodcastFull) {
         guard let feedID = podcast.feedID, let service = podcastService else { return }
+        print("Загружаем эпизоды для feedID: \(feedID)")
+        
         episodeLoadTask?.cancel()
         episodeLoadTask = Task {
             do {
                 let episodes = try await service.getEpisodes(feedID: feedID, max: 20)
                 guard !episodes.isEmpty, !Task.isCancelled else { return }
+                print("Загружено эпизодов: \(episodes.count)")
+                
+                let savedProgress = ContinueListeningService.shared.load().first { $0.podcastId == podcast.id }?.progress ?? 0
+                
                 await MainActor.run {
                     PlayerService.shared.startPlayback(episodes: episodes, index: 0)
+                    
+                    if savedProgress > 0 && savedProgress < 0.95 {
+                        let duration = PlayerService.shared.duration
+                        let startTime = Double(savedProgress) * duration
+                        PlayerService.shared.seek(to: startTime)
+                    }
                 }
             } catch {
-                // network or decoding error — playback not started
+                print("Ошибка загрузки эпизодов: \(error)")
             }
         }
     }
@@ -148,6 +234,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
         ])
     }
     
+    
     private func setupMiniPlayer() {
         miniPlayer.translatesAutoresizingMaskIntoConstraints = false
         miniPlayer.isHidden = true
@@ -164,9 +251,6 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
             miniPlayerBottom
         ])
         
-        miniPlayer.onPlay = {
-            print("play tapped")
-        }
     }
     
     // MARK: - Mini Player
@@ -271,8 +355,10 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
         case .continueListening:
             let podcast = continueData[indexPath.row]
             showMiniPlayer(with: podcast)
+            loadEpisodesAndPlay(for: podcast)   // ← добавить
             let vc = DetailsViewController(podcast: podcast)
             navigationController?.pushViewController(vc, animated: true)
+//
         case .trending:
             break
         }

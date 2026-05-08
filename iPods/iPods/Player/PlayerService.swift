@@ -8,6 +8,7 @@ import Foundation
 import AVFoundation
 import Networking
 
+
 final class PlayerService {
     
     static let shared = PlayerService()
@@ -109,6 +110,8 @@ final class PlayerService {
         playCurrent()
     }
     
+    
+    
     func seek(to seconds: Double) {
         let time = CMTime(seconds: seconds, preferredTimescale: 600)
         player?.seek(to: time)
@@ -135,12 +138,21 @@ final class PlayerService {
             player?.replaceCurrentItem(with: item)
         }
         
+        
+        let savedProgress = ContinueListeningService.shared.load().first { $0.podcastId == episode.feedId }?.progress ?? 0
+        if savedProgress > 0 && savedProgress < 0.95 {
+            let duration = player?.currentItem?.duration.seconds ?? 0
+            let startTime = Double(savedProgress) * duration
+            player?.seek(to: CMTime(seconds: startTime, preferredTimescale: 600))
+        }
+        
         addObserver()
         player?.play()
         
         onEpisodeChanged?(episode)
         onPlaybackStateChanged?(true)
     }
+    
     
     private func configureAudioSession() {
         let session = AVAudioSession.sharedInstance()
@@ -158,6 +170,7 @@ final class PlayerService {
         }
     }
     
+    
     private func addObserver() {
         let interval = CMTime(seconds: 0.5, preferredTimescale: 600)
         
@@ -172,7 +185,7 @@ final class PlayerService {
 
             ? self.player?.currentItem?.duration.seconds ?? 0
                             : 0
-                        
+            
                         self.onProgressChanged?(current, total)
                     }
                 }
@@ -182,4 +195,6 @@ final class PlayerService {
                     player?.removeTimeObserver(token)
                     timeObserverToken = nil
                 }
+    
+    
             }

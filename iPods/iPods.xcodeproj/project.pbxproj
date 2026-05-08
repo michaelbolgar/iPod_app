@@ -10,8 +10,8 @@
 		D7AA000A2F9AA70000000001 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; };
 		D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7FFD0672F8EBB6500327536 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F11F5AED2F9B9BD400FD3E90 /* ListeningData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */; };
-		F11F5AEE2F9B9BD400FD3E90 /* ListeningData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F12C5E5A2FAD27CC0072481F /* ListeningData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12C5E522FAD27CC0072481F /* ListeningData.framework */; };
+		F12C5E5B2FAD27CC0072481F /* ListeningData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F12C5E522FAD27CC0072481F /* ListeningData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4538EFB2FA36EEB00CC2900 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F4538EFA2FA36EEB00CC2900 /* Secrets.xcconfig */; };
 		F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F4ACAFE02F981BC8003E8500 /* SnapKit */; };
 		F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF367D2F92F73B00BD1678 /* DesignSys.framework */; };
@@ -33,11 +33,11 @@
 			remoteGlobalIDString = D7FFD0662F8EBB6500327536;
 			remoteInfo = Networking;
 		};
-		F11F5AEB2F9B9BD400FD3E90 /* PBXContainerItemProxy */ = {
+		F12C5E582FAD27CC0072481F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F40DD4A52F8D818C00D25F9E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F11F5AE42F9B9BD400FD3E90;
+			remoteGlobalIDString = F12C5E512FAD27CC0072481F;
 			remoteInfo = ListeningData;
 		};
 		F4AF368E2F92F73B00BD1678 /* PBXContainerItemProxy */ = {
@@ -57,7 +57,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F4AF36912F92F73B00BD1678 /* DesignSys.framework in Embed Frameworks */,
-				F11F5AEE2F9B9BD400FD3E90 /* ListeningData.framework in Embed Frameworks */,
+				F12C5E5B2FAD27CC0072481F /* ListeningData.framework in Embed Frameworks */,
 				D7FFD0702F8EBB6500327536 /* Networking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -68,7 +68,7 @@
 /* Begin PBXFileReference section */
 		D7AA00012F9AA70000000003 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFD0672F8EBB6500327536 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ListeningData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F12C5E522FAD27CC0072481F /* ListeningData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ListeningData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40DD4AD2F8D818C00D25F9E /* iPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4538EFA2FA36EEB00CC2900 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		F4AF367D2F92F73B00BD1678 /* DesignSys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +88,22 @@
 			membershipExceptions = (
 				ShareService.swift,
 				ShareTestViewController.swift,
+			);
+			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
+		};
+		F117F9DB2FADC08900441315 /* Exceptions for "UserDefaults" folder in "ListeningData" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ContinueListeningItem.swift,
+				ContinueListeningService.swift,
+			);
+			target = F12C5E512FAD27CC0072481F /* ListeningData */;
+		};
+		F117F9DD2FADC08C00441315 /* Exceptions for "UserDefaults" folder in "iPods" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ContinueListeningItem.swift,
+				ContinueListeningService.swift,
 			);
 			target = F40DD4AC2F8D818C00D25F9E /* iPods */;
 		};
@@ -111,7 +127,16 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		F11F5AE62F9B9BD400FD3E90 /* ListeningData */ = {
+		F117F9D12FADBDF900441315 /* UserDefaults */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F117F9DD2FADC08C00441315 /* Exceptions for "UserDefaults" folder in "iPods" target */,
+				F117F9DB2FADC08900441315 /* Exceptions for "UserDefaults" folder in "ListeningData" target */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		F12C5E532FAD27CC0072481F /* ListeningData */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ListeningData;
 			sourceTree = "<group>";
@@ -156,7 +181,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F11F5AE22F9B9BD400FD3E90 /* Frameworks */ = {
+		F12C5E4F2FAD27CC0072481F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -169,7 +194,7 @@
 			files = (
 				F4ACAFE12F981BC8003E8500 /* SnapKit in Frameworks */,
 				F4AF36902F92F73B00BD1678 /* DesignSys.framework in Frameworks */,
-				F11F5AED2F9B9BD400FD3E90 /* ListeningData.framework in Frameworks */,
+				F12C5E5A2FAD27CC0072481F /* ListeningData.framework in Frameworks */,
 				D7FFD06F2F8EBB6500327536 /* Networking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,6 +209,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F12C5E5F2FAD28010072481F /* Save */ = {
+			isa = PBXGroup;
+			children = (
+				F117F9D12FADBDF900441315 /* UserDefaults */,
+				F12C5E532FAD27CC0072481F /* ListeningData */,
+			);
+			path = Save;
+			sourceTree = "<group>";
+		};
+		F12C5E702FAD2C130072481F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F40DD4A42F8D818C00D25F9E = {
 			isa = PBXGroup;
 			children = (
@@ -192,9 +233,10 @@
 				D7FFD0682F8EBB6500327536 /* Networking */,
 				D7AA00022F9AA70000000004 /* NetworkingTests */,
 				F4AF367E2F92F73B00BD1678 /* DesignSys */,
-				F11F5AE62F9B9BD400FD3E90 /* ListeningData */,
+				F12C5E5F2FAD28010072481F /* Save */,
 				F40DD4AE2F8D818C00D25F9E /* Products */,
 				F4538EFA2FA36EEB00CC2900 /* Secrets.xcconfig */,
+				F12C5E702FAD2C130072481F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,7 +247,7 @@
 				D7FFD0672F8EBB6500327536 /* Networking.framework */,
 				D7AA00012F9AA70000000003 /* NetworkingTests.xctest */,
 				F4AF367D2F92F73B00BD1678 /* DesignSys.framework */,
-				F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */,
+				F12C5E522FAD27CC0072481F /* ListeningData.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,7 +262,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F11F5AE02F9B9BD400FD3E90 /* Headers */ = {
+		F12C5E4D2FAD27CC0072481F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -283,27 +325,28 @@
 			productReference = D7FFD0672F8EBB6500327536 /* Networking.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		F11F5AE42F9B9BD400FD3E90 /* ListeningData */ = {
+		F12C5E512FAD27CC0072481F /* ListeningData */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F11F5AEF2F9B9BD400FD3E90 /* Build configuration list for PBXNativeTarget "ListeningData" */;
+			buildConfigurationList = F12C5E5C2FAD27CC0072481F /* Build configuration list for PBXNativeTarget "ListeningData" */;
 			buildPhases = (
-				F11F5AE02F9B9BD400FD3E90 /* Headers */,
-				F11F5AE12F9B9BD400FD3E90 /* Sources */,
-				F11F5AE22F9B9BD400FD3E90 /* Frameworks */,
-				F11F5AE32F9B9BD400FD3E90 /* Resources */,
+				F12C5E4D2FAD27CC0072481F /* Headers */,
+				F12C5E4E2FAD27CC0072481F /* Sources */,
+				F12C5E4F2FAD27CC0072481F /* Frameworks */,
+				F12C5E502FAD27CC0072481F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				F11F5AE62F9B9BD400FD3E90 /* ListeningData */,
+				F117F9D12FADBDF900441315 /* UserDefaults */,
+				F12C5E532FAD27CC0072481F /* ListeningData */,
 			);
 			name = ListeningData;
 			packageProductDependencies = (
 			);
 			productName = ListeningData;
-			productReference = F11F5AE52F9B9BD400FD3E90 /* ListeningData.framework */;
+			productReference = F12C5E522FAD27CC0072481F /* ListeningData.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F40DD4AC2F8D818C00D25F9E /* iPods */ = {
@@ -320,7 +363,7 @@
 			dependencies = (
 				D7FFD06E2F8EBB6500327536 /* PBXTargetDependency */,
 				F4AF368F2F92F73B00BD1678 /* PBXTargetDependency */,
-				F11F5AEC2F9B9BD400FD3E90 /* PBXTargetDependency */,
+				F12C5E592FAD27CC0072481F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F40DD4AF2F8D818C00D25F9E /* iPods */,
@@ -374,7 +417,7 @@
 					D7FFD0662F8EBB6500327536 = {
 						CreatedOnToolsVersion = 26.3;
 					};
-					F11F5AE42F9B9BD400FD3E90 = {
+					F12C5E512FAD27CC0072481F = {
 						CreatedOnToolsVersion = 26.2;
 					};
 					F40DD4AC2F8D818C00D25F9E = {
@@ -406,7 +449,7 @@
 				D7FFD0662F8EBB6500327536 /* Networking */,
 				D7AA00032F9AA70000000006 /* NetworkingTests */,
 				F4AF367C2F92F73B00BD1678 /* DesignSys */,
-				F11F5AE42F9B9BD400FD3E90 /* ListeningData */,
+				F12C5E512FAD27CC0072481F /* ListeningData */,
 			);
 		};
 /* End PBXProject section */
@@ -426,7 +469,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F11F5AE32F9B9BD400FD3E90 /* Resources */ = {
+		F12C5E502FAD27CC0072481F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -465,7 +508,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F11F5AE12F9B9BD400FD3E90 /* Sources */ = {
+		F12C5E4E2FAD27CC0072481F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -499,10 +542,10 @@
 			target = D7FFD0662F8EBB6500327536 /* Networking */;
 			targetProxy = D7FFD06D2F8EBB6500327536 /* PBXContainerItemProxy */;
 		};
-		F11F5AEC2F9B9BD400FD3E90 /* PBXTargetDependency */ = {
+		F12C5E592FAD27CC0072481F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F11F5AE42F9B9BD400FD3E90 /* ListeningData */;
-			targetProxy = F11F5AEB2F9B9BD400FD3E90 /* PBXContainerItemProxy */;
+			target = F12C5E512FAD27CC0072481F /* ListeningData */;
+			targetProxy = F12C5E582FAD27CC0072481F /* PBXContainerItemProxy */;
 		};
 		F4AF368F2F92F73B00BD1678 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -664,22 +707,22 @@
 			};
 			name = Release;
 		};
-		F11F5AF02F9B9BD400FD3E90 /* Debug */ = {
+		F12C5E5D2FAD27CC0072481F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -692,38 +735,34 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		F11F5AF12F9B9BD400FD3E90 /* Release */ = {
+		F12C5E5E2FAD27CC0072481F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -736,17 +775,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -760,7 +795,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = 435Y28TX46;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = iPods/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -799,7 +834,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87P7GYW9VY;
+				DEVELOPMENT_TEAM = 435Y28TX46;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = iPods/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1062,11 +1097,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F11F5AEF2F9B9BD400FD3E90 /* Build configuration list for PBXNativeTarget "ListeningData" */ = {
+		F12C5E5C2FAD27CC0072481F /* Build configuration list for PBXNativeTarget "ListeningData" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F11F5AF02F9B9BD400FD3E90 /* Debug */,
-				F11F5AF12F9B9BD400FD3E90 /* Release */,
+				F12C5E5D2FAD27CC0072481F /* Debug */,
+				F12C5E5E2FAD27CC0072481F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,7 +1,6 @@
 import Foundation
 
 struct PodcastMapper {
-
     static func toFull(_ podcast: Podcast) -> PodcastFull {
         return PodcastFull(
             id: podcast.id,
@@ -12,8 +11,8 @@ struct PodcastMapper {
             episodeCount: podcast.episodeCount,
             description: podcast.description,
             progress: 0.0,
-            artworkURL: nil,
-            feedID: nil
+            artworkURL: podcast.imageURL,   
+            feedID: podcast.id
         )
     }
 }

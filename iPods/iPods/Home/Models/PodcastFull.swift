@@ -17,7 +17,7 @@ struct PodcastFull {
     let description: String
     let progress: Double
     let artworkURL: URL?
-    let feedID: Int?
+    var feedID: Int?
 }
 
 extension PodcastFull {
@@ -31,6 +31,6 @@ extension PodcastFull {
         self.description = podcast.description
         self.progress = 0.0
         self.artworkURL = nil
-        self.feedID = nil
+        self.feedID = podcast.id
     }
 }

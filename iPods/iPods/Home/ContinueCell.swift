@@ -22,12 +22,14 @@ final class ContinueCell: UITableViewCell {
 
     // MARK: - UI
 
-    private let coverView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .darkGray
-        view.layer.cornerRadius = Layout.coverCornerRadius
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private let coverView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .darkGray
+        imageView.layer.cornerRadius = Layout.coverCornerRadius
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
 
     private let titleLabel: UILabel = {
@@ -66,7 +68,11 @@ final class ContinueCell: UITableViewCell {
     }
 
     required init?(coder: NSCoder) { fatalError() }
-
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        coverView.image = nil
+    }
+    
     // MARK: - Setup
 
     private func setupLayout() {
@@ -103,10 +109,27 @@ final class ContinueCell: UITableViewCell {
 
     // MARK: - Configure
 
+    
     func configure(with podcast: PodcastFull) {
         titleLabel.text = podcast.title
         authorLabel.text = podcast.author
         progressBar.progress = Float(podcast.progress)
+
+        if let url = podcast.artworkURL {
+            Task {
+                do {
+                    let (data, _) = try await URLSession.shared.data(from: url)
+
+                    if let image = UIImage(data: data) {
+                        await MainActor.run {
+                            self.coverView.image = image
+                        }
+                    }
+                } catch {
+                    print("image load error:", error)
+                }
+            }
+        }
     }
 }
 

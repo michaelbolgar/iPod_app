@@ -15,4 +15,6 @@ struct Podcast {
     let rating: Double
     let episodeCount: Int
     let description: String
+    let imageURL: URL?   
+
 }
