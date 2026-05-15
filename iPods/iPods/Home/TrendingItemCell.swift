@@ -5,6 +5,7 @@
 //  Created by Administration  on 18/04/26.
 //
 import UIKit
+import DesignSys
 final class TrendingItemCell: UICollectionViewCell {
 
     static let reuseID = "TrendingItemCell"
@@ -13,6 +14,7 @@ final class TrendingItemCell: UICollectionViewCell {
     private let titleLabel = UILabel()
     private let authorLabel = UILabel()
     private var imageTask: URLSessionDataTask?
+    private var currentImageURL: URL?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,11 +35,11 @@ final class TrendingItemCell: UICollectionViewCell {
         coverImageView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.textColor = .white
-        titleLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        titleLabel.font = AppFonts.secondaryMedium(size: 14)
         titleLabel.numberOfLines = 2
 
         authorLabel.textColor = .lightGray
-        authorLabel.font = .systemFont(ofSize: 12)
+        authorLabel.font = AppFonts.secondary(size: 12)
 
         let stack = UIStackView(arrangedSubviews: [
             coverImageView,
@@ -64,6 +66,8 @@ final class TrendingItemCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageTask?.cancel()
+        imageTask = nil
+        currentImageURL = nil
         coverImageView.image = nil
     }
 
@@ -72,11 +76,12 @@ final class TrendingItemCell: UICollectionViewCell {
         authorLabel.text = podcast.author
 
         guard let url = podcast.artworkURL else { return }
-        imageTask = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
-            guard let data, let image = UIImage(data: data) else { return }
-            DispatchQueue.main.async {
-                self?.coverImageView.image = image
-            }
+        currentImageURL = url
+        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 30)
+        imageTask = URLSession.shared.dataTask(with: request) { [weak self] data, _, _ in
+            guard let self, let data, let image = UIImage(data: data) else { return }
+            guard self.currentImageURL == url else { return }
+            DispatchQueue.main.async { self.coverImageView.image = image }
         }
         imageTask?.resume()
     }

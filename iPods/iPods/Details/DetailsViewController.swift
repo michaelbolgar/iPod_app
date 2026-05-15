@@ -5,13 +5,15 @@
 //  Created by Administration  on 17/04/26.
 //
 
-
 import UIKit
+import Networking
 
 final class DetailsViewController: UIViewController {
-    
+
     // MARK: - Properties
     private let podcast: PodcastFull
+    private let podcastService = try? PodcastService()
+    private var episodeTask: Task<Void, Never>?
     
     init(podcast: PodcastFull) {
         self.podcast = podcast
@@ -25,6 +27,8 @@ final class DetailsViewController: UIViewController {
     // MARK: - UI
     
     private var shareButton = UIButton()
+    private var likeButton = UIButton()
+    private var isLiked = false
     
     private let scrollView = UIScrollView()
     
@@ -104,8 +108,18 @@ final class DetailsViewController: UIViewController {
         setupUI()
         configure()
         loadImage()
+        loadEpisodeCount()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+
+    deinit {
+        episodeTask?.cancel()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         addGradient()
@@ -117,7 +131,8 @@ final class DetailsViewController: UIViewController {
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        let likeButton = makeCircleButton(systemName: "heart")
+        likeButton = makeCircleButton(systemName: "heart")
+        likeButton.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
         let downloadButton = makeCircleButton(systemName: "arrow.down")
         shareButton = makeCircleButton(systemName: "square.and.arrow.up")
         shareButton.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
@@ -127,16 +142,18 @@ final class DetailsViewController: UIViewController {
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(scrollView)
-        
+        view.addSubview(backButton)
+
         scrollView.addSubview(coverImageView)
         scrollView.addSubview(blackContainer)
-        coverImageView.addSubview(backButton)
         blackContainer.addSubview(titleLabel)
         blackContainer.addSubview(authorLabel)
         blackContainer.addSubview(metaLabel)
         blackContainer.addSubview(descriptionLabel)
         blackContainer.addSubview(buttonStack)
-        
+
+        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -148,9 +165,9 @@ final class DetailsViewController: UIViewController {
             coverImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             coverImageView.heightAnchor.constraint(equalToConstant: 500),
             
-            backButton.topAnchor.constraint(equalTo: coverImageView.topAnchor, constant: 20),
-            backButton.leadingAnchor.constraint(equalTo: coverImageView.leadingAnchor, constant: 20),
-            
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+
             blackContainer.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: -65),
             blackContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             blackContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
@@ -183,15 +200,49 @@ final class DetailsViewController: UIViewController {
     private func configure() {
         titleLabel.text = podcast.title
         authorLabel.text = podcast.author
-        descriptionLabel.text = podcast.description
-        metaLabel.text = "⭐️ \(podcast.rating)   \(podcast.episodeCount) eps   \(podcast.genre)"
-        
-        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+        descriptionLabel.text = plainText(from: podcast.description)
+        updateMeta(episodeCount: podcast.episodeCount)
+    }
+
+    private func updateMeta(episodeCount: Int) {
+        let parts = [
+            episodeCount > 0 ? "\(episodeCount) eps" : nil,
+            podcast.genre.isEmpty ? nil : podcast.genre
+        ].compactMap { $0 }
+        metaLabel.text = parts.joined(separator: "   ")
+    }
+
+    private func plainText(from html: String) -> String {
+        guard let data = html.data(using: .utf8),
+              let attributed = try? NSAttributedString(
+                data: data,
+                options: [.documentType: NSAttributedString.DocumentType.html,
+                          .characterEncoding: String.Encoding.utf8.rawValue],
+                documentAttributes: nil
+              ) else { return html }
+        return attributed.string
+    }
+
+    private func loadEpisodeCount() {
+        guard let service = podcastService else { return }
+        let feedID = podcast.feedID ?? podcast.id
+        episodeTask = Task { [weak self] in
+            guard let self else { return }
+            do {
+                let updated = try await service.getPodcastByID(feedID)
+                let count = updated.episodeCount ?? 0
+                await MainActor.run {
+                    self.updateMeta(episodeCount: count)
+                }
+            } catch {
+                // keep existing count
+            }
+        }
     }
     
     private func loadImage() {
         guard let url = podcast.artworkURL else { return }
-        
+
         URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
             guard let self,
                   let data = data,
@@ -232,6 +283,13 @@ final class DetailsViewController: UIViewController {
         return button
     }
     
+    @objc private func likeTapped() {
+        isLiked.toggle()
+        let symbolName = isLiked ? "heart.fill" : "heart"
+        likeButton.setImage(UIImage(systemName: symbolName), for: .normal)
+        likeButton.tintColor = isLiked ? .systemRed : .white
+    }
+
     @objc private func backTapped() {
         navigationController?.popViewController(animated: true)
     }
@@ -244,5 +302,4 @@ final class DetailsViewController: UIViewController {
             sourceView: shareButton
         )
     }
-    
 }

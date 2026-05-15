@@ -7,6 +7,7 @@
 
 
 import UIKit
+import DesignSys
 
 final class TrendingCardView: UIView {
 
@@ -24,7 +25,7 @@ final class TrendingCardView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        label.font = AppFonts.secondaryMedium(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,7 +33,7 @@ final class TrendingCardView: UIView {
     private let authorLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
-        label.font = .systemFont(ofSize: 11)
+        label.font = AppFonts.secondary(size: 11)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

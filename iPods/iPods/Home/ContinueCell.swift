@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DesignSys
 
 final class ContinueCell: UITableViewCell {
 
@@ -33,7 +34,7 @@ final class ContinueCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.font = AppFonts.secondaryMedium(size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -41,7 +42,7 @@ final class ContinueCell: UITableViewCell {
     private let authorLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
-        label.font = .systemFont(ofSize: 12)
+        label.font = AppFonts.secondary(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

@@ -1,5 +1,7 @@
 import UIKit
+import SnapKit
 import Networking
+import DesignSys
 
 final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     
@@ -17,11 +19,66 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
         static let searchHistoryCellHeight: CGFloat = 44
     }
     
+    private(set) lazy var searchResultsTableView: UITableView = {
+        let tv = UITableView()
+        tv.backgroundColor = .black
+        tv.separatorStyle = .none
+        tv.isHidden = true
+        tv.keyboardDismissMode = .onDrag
+        tv.register(SearchResultCell.self, forCellReuseIdentifier: SearchResultCell.reuseID)
+        tv.register(SearchHistoryCell.self, forCellReuseIdentifier: SearchHistoryCell.reuseID)
+        tv.register(SearchHistoryHeaderCell.self, forCellReuseIdentifier: SearchHistoryHeaderCell.reuseID)
+        return tv
+    }()
+    
+    private(set) lazy var emptySearchView: UIView = {
+        let v = UIView()
+        v.backgroundColor = .black
+        v.isHidden = true
+        
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 12
+        stack.alignment = .center
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        let emoji = UILabel()
+        emoji.text = "🎙️"
+        emoji.font = .systemFont(ofSize: 60)
+        
+        let title = UILabel()
+        title.text = "Ничего не найдено"
+        title.textColor = .white
+        title.font = .systemFont(ofSize: 18, weight: .bold)
+        
+        let subtitle = UILabel()
+        subtitle.text = "Попробуйте другой запрос"
+        subtitle.textColor = .systemGray
+        subtitle.font = .systemFont(ofSize: 14)
+        
+        [emoji, title, subtitle].forEach { stack.addArrangedSubview($0) }
+        v.addSubview(stack)
+        stack.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(32)
+        }
+        return v
+    }()
+    
+    enum SearchState {
+        case home
+        case history
+        case results
+        case empty
+    }
+    
+    var currentSearchState: SearchState = .home
+    
     // MARK: - UI
     let tableView = UITableView(frame: .zero, style: .plain)
     private let miniPlayer = MiniPlayerView()
     private var miniPlayerBottom: NSLayoutConstraint!
-
+    
     // MARK: - Services
     let podcastService = try? PodcastService()
     private var episodeLoadTask: Task<Void, Never>?
@@ -34,7 +91,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     // MARK: - Data
     let continueData: [PodcastFull] = []
     var trendingData: [PodcastFull] = []
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,20 +101,22 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
         setupTableView()
         setupMiniPlayer()
         setupSearchViews()
-        addKeyboardDismissGesture()
         loadTrending()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        tap.cancelsTouchesInView = false
+        tap.delegate = self
+        view.addGestureRecognizer(tap)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let indexPath = resultsTableView.indexPathForSelectedRow {
-            resultsTableView.deselectRow(at: indexPath, animated: animated)
-        }
-        if let indexPath = historyTableView.indexPathForSelectedRow {
-            historyTableView.deselectRow(at: indexPath, animated: animated)
+        
+        if let indexPath = searchResultsTableView.indexPathForSelectedRow {
+            searchResultsTableView.deselectRow(at: indexPath, animated: animated)
         }
     }
-
+    
     private func loadTrending() {
         guard let service = podcastService else { return }
         Task { [weak self] in
@@ -69,10 +128,10 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                         id: podcast.id,
                         title: podcast.title,
                         author: podcast.author ?? "",
-                        genre: "",
+                        genre: podcast.categories?.values.first ?? "",
                         rating: 0,
-                        episodeCount: 0,
-                        description: "",
+                        episodeCount: podcast.episodeCount ?? 0,
+                        description: podcast.description ?? "",
                         progress: 0,
                         artworkURL: podcast.imageURL,
                         feedID: podcast.id
@@ -83,11 +142,11 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                     self.tableView.reloadData()
                 }
             } catch {
-                // network or decoding error — trending stays empty
+                // network error — trending not loaded
             }
         }
     }
-
+    
     func loadEpisodesAndPlay(for podcast: PodcastFull) {
         guard let feedID = podcast.feedID, let service = podcastService else { return }
         episodeLoadTask?.cancel()
@@ -109,10 +168,12 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
         navigationItem.title = "Listen Now"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.white,
+            .font: AppFonts.primaryBold(size: 34)
         ]
         navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.white,
+            .font: AppFonts.primaryBold(size: 17)
         ]
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
@@ -139,7 +200,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-
+    
     private func setupSearchBar() {
         searchBar.placeholder = "Search podcasts..."
         searchBar.searchBarStyle = .minimal
@@ -173,16 +234,47 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
             miniPlayerBottom
         ])
         
-        miniPlayer.onPlay = { }
-    }
-    
-    // MARK: - Keyboard
-    @objc override func dismissKeyboard() {
-        searchBar.resignFirstResponder()
+        miniPlayer.onPlay = {
+            PlayerService.shared.togglePlayback()
+        }
+
+        miniPlayer.onTap = { [weak self] podcast in
+            guard let self else { return }
+            let vc = DetailsViewController(podcast: podcast)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
+    @objc func handleTap(_ gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: view)
+        if !searchResultsTableView.isHidden {
+            let tableLocation = searchResultsTableView.convert(location, from: view)
+            if searchResultsTableView.indexPathForRow(at: tableLocation) != nil { return }
+        }
+
+        guard searchBar.isFirstResponder || currentSearchState != .home else { return }
+
+        if let query = searchBar.text,
+           !query.trimmingCharacters(in: .whitespaces).isEmpty {
+            saveToHistory(query)
+        }
+        searchBar.text = ""
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.resignFirstResponder()
+        view.endEditing(true)
+        deactivateSearch()
+    }
+    
     // MARK: - Mini Player
+    func setMiniPlayerVisible(_ visible: Bool) {
+        guard !miniPlayer.isHidden else { return }
+        UIView.animate(withDuration: 0.2) {
+            self.miniPlayer.alpha = visible ? 1 : 0
+        }
+    }
+
     func showMiniPlayer(with podcast: PodcastFull) {
+        loadEpisodesAndPlay(for: podcast)
         miniPlayer.configure(with: podcast)
         miniPlayer.isHidden = false
         miniPlayerBottom.constant = -8
@@ -202,25 +294,23 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
 extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if tableView === resultsTableView || tableView === historyTableView {
-            return 1
-        }
+        if tableView === searchResultsTableView { return 1 }
         return Section.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView === resultsTableView || tableView === historyTableView {
-            return numberOfRows(in: tableView)
+        if tableView === searchResultsTableView {
+            return numberOfSearchRows(in: section)
         }
         guard let section = Section(rawValue: section) else { return 0 }
         switch section {
         case .continueListening: return continueData.count
-        case .trending: return 1
+        case .trending: return trendingData.isEmpty ? 0 : 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView === resultsTableView || tableView === historyTableView {
+        if tableView === searchResultsTableView {
             return searchCell(for: tableView, at: indexPath)
         }
         guard let section = Section(rawValue: indexPath.section) else {
@@ -240,7 +330,6 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
                 guard let self, index < self.trendingData.count else { return }
                 let podcast = self.trendingData[index]
                 self.showMiniPlayer(with: podcast)
-                self.loadEpisodesAndPlay(for: podcast)
                 let vc = DetailsViewController(podcast: podcast)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -250,15 +339,19 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView === resultsTableView { return Layout.searchResultCellHeight }
-        if tableView === historyTableView { return Layout.searchHistoryCellHeight }
+        if tableView === searchResultsTableView {
+            if currentSearchState == .history && indexPath.row == 0 {
+                return 50
+            }
+            return currentSearchState == .results ? Layout.searchResultCellHeight : Layout.searchHistoryCellHeight
+        }
         guard let section = Section(rawValue: indexPath.section) else { return 0 }
         switch section {
         case .continueListening:
             return Layout.continueCellHeight
         case .trending:
             let cardWidth = (UIScreen.main.bounds.width - 32 - 12) / 2
-            let cardHeight = cardWidth + 40
+            let cardHeight = cardWidth + 50
             let rows = CGFloat((trendingData.count + 1) / 2)
             return (cardHeight * rows) + (12 * (rows - 1)) + 24
         }
@@ -266,25 +359,25 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView? {
-        if tableView === resultsTableView || tableView === historyTableView { return nil }
+        if tableView === searchResultsTableView { return nil }
         guard let section = Section(rawValue: section) else { return nil }
         switch section {
         case .continueListening: return SectionHeaderView(title: "Continue Listening")
-        case .trending: return SectionHeaderView(title: "🔥 Trending Now")
+        case .trending: return SectionHeaderView(title: "Trending Now", symbolName: "chart.line.uptrend.xyaxis")
         }
     }
-
+    
     func tableView(_ tableView: UITableView,
                    heightForHeaderInSection section: Int) -> CGFloat {
-        if tableView === resultsTableView || tableView === historyTableView {
+        if tableView === searchResultsTableView {
             return .leastNormalMagnitude
         }
         return Layout.headerHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView === resultsTableView || tableView === historyTableView {
-            searchDidSelect(in: tableView, at: indexPath)
+        if tableView === searchResultsTableView {
+            searchDidSelect(at: indexPath)
             return
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -301,3 +394,11 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+extension HomeVC_Madina: UIGestureRecognizerDelegate {
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldRecognizeSimultaneouslyWith other: UIGestureRecognizer
+    ) -> Bool {
+        return true
+    }
+}
