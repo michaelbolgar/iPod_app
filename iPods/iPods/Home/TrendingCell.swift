@@ -81,6 +81,7 @@ extension TrendingCell: UICollectionViewDataSource, UICollectionViewDelegateFlow
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: TrendingItemCell.reuseID,
             for: indexPath) as! TrendingItemCell
+        guard indexPath.item < data.count else { return cell }
         cell.configure(with: data[indexPath.item])
         return cell
     }
@@ -90,7 +91,7 @@ extension TrendingCell: UICollectionViewDataSource, UICollectionViewDelegateFlow
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let spacing: CGFloat = 12
         let width = (collectionView.frame.width - spacing) / 2
-        return CGSize(width: width, height: width + 40)
+        return CGSize(width: width, height: width + 50)
     }
 
     // тап по каточке

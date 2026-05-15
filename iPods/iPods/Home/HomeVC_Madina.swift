@@ -1,6 +1,7 @@
 import UIKit
 import SnapKit
 import Networking
+import DesignSys
 
 final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     
@@ -102,8 +103,9 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
         setupSearchViews()
         loadTrending()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tap.cancelsTouchesInView = false
+        tap.delegate = self
         view.addGestureRecognizer(tap)
     }
     
@@ -126,10 +128,10 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                         id: podcast.id,
                         title: podcast.title,
                         author: podcast.author ?? "",
-                        genre: "",
+                        genre: podcast.categories?.values.first ?? "",
                         rating: 0,
-                        episodeCount: 0,
-                        description: "",
+                        episodeCount: podcast.episodeCount ?? 0,
+                        description: podcast.description ?? "",
                         progress: 0,
                         artworkURL: podcast.imageURL,
                         feedID: podcast.id
@@ -140,7 +142,7 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
                     self.tableView.reloadData()
                 }
             } catch {
-                // network or decoding error — trending stays empty
+                // network error — trending not loaded
             }
         }
     }
@@ -166,10 +168,12 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
         navigationItem.title = "Listen Now"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.white,
+            .font: AppFonts.primaryBold(size: 34)
         ]
         navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.white,
+            .font: AppFonts.primaryBold(size: 17)
         ]
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
@@ -230,12 +234,26 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
             miniPlayerBottom
         ])
         
-        miniPlayer.onPlay = { }
+        miniPlayer.onPlay = {
+            PlayerService.shared.togglePlayback()
+        }
+
+        miniPlayer.onTap = { [weak self] podcast in
+            guard let self else { return }
+            let vc = DetailsViewController(podcast: podcast)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    
-    @objc func handleTap() {
+
+    @objc func handleTap(_ gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: view)
+        if !searchResultsTableView.isHidden {
+            let tableLocation = searchResultsTableView.convert(location, from: view)
+            if searchResultsTableView.indexPathForRow(at: tableLocation) != nil { return }
+        }
+
         guard searchBar.isFirstResponder || currentSearchState != .home else { return }
-        
+
         if let query = searchBar.text,
            !query.trimmingCharacters(in: .whitespaces).isEmpty {
             saveToHistory(query)
@@ -248,7 +266,15 @@ final class HomeVC_Madina: UIViewController, UISearchBarDelegate {
     }
     
     // MARK: - Mini Player
+    func setMiniPlayerVisible(_ visible: Bool) {
+        guard !miniPlayer.isHidden else { return }
+        UIView.animate(withDuration: 0.2) {
+            self.miniPlayer.alpha = visible ? 1 : 0
+        }
+    }
+
     func showMiniPlayer(with podcast: PodcastFull) {
+        loadEpisodesAndPlay(for: podcast)
         miniPlayer.configure(with: podcast)
         miniPlayer.isHidden = false
         miniPlayerBottom.constant = -8
@@ -304,7 +330,6 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
                 guard let self, index < self.trendingData.count else { return }
                 let podcast = self.trendingData[index]
                 self.showMiniPlayer(with: podcast)
-                self.loadEpisodesAndPlay(for: podcast)
                 let vc = DetailsViewController(podcast: podcast)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -326,7 +351,7 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
             return Layout.continueCellHeight
         case .trending:
             let cardWidth = (UIScreen.main.bounds.width - 32 - 12) / 2
-            let cardHeight = cardWidth + 40
+            let cardHeight = cardWidth + 50
             let rows = CGFloat((trendingData.count + 1) / 2)
             return (cardHeight * rows) + (12 * (rows - 1)) + 24
         }
@@ -338,7 +363,7 @@ extension HomeVC_Madina: UITableViewDataSource, UITableViewDelegate {
         guard let section = Section(rawValue: section) else { return nil }
         switch section {
         case .continueListening: return SectionHeaderView(title: "Continue Listening")
-        case .trending: return SectionHeaderView(title: "🔥 Trending Now")
+        case .trending: return SectionHeaderView(title: "Trending Now", symbolName: "chart.line.uptrend.xyaxis")
         }
     }
     

@@ -8,23 +8,24 @@
 import UIKit
 import SnapKit
 import Networking
+import DesignSys
 
 extension HomeVC_Madina {
-    
+
     func setupSearchViews() {
         [searchResultsTableView, emptySearchView].forEach {
             view.addSubview($0)
         }
-        
+
         searchResultsTableView.dataSource = self
         searchResultsTableView.delegate = self
-                
+
         searchResultsTableView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
-        
+
         emptySearchView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom)
             $0.leading.trailing.equalToSuperview()
@@ -68,6 +69,7 @@ extension HomeVC_Madina {
 
     // MARK: - Search Logic
     func activateSearch() {
+        setMiniPlayerVisible(false)
         UIView.animate(withDuration: 0.25) { [weak self] in
             self?.tableView.alpha = 0
         } completion: { [weak self] _ in
@@ -83,6 +85,7 @@ extension HomeVC_Madina {
     func deactivateSearch() {
         searchTask?.cancel()
         filteredPodcasts = []
+        setMiniPlayerVisible(true)
         showHomeState()
     }
 
@@ -95,7 +98,6 @@ extension HomeVC_Madina {
             if !searchHistory.isEmpty {
                 showHistoryState()
             } else {
-                tableView.isHidden = true
                 searchResultsTableView.isHidden = true
                 emptySearchView.isHidden = true
             }
@@ -112,13 +114,13 @@ extension HomeVC_Madina {
                 guard !Task.isCancelled else { return }
                 let mapped = podcasts.map { podcast in
                     PodcastFull(
-                        id: 0,
+                        id: podcast.id,
                         title: podcast.title,
                         author: podcast.author ?? "",
-                        genre: "",
+                        genre: podcast.categories?.values.first ?? "",
                         rating: 0,
-                        episodeCount: 0,
-                        description: "",
+                        episodeCount: podcast.episodeCount ?? 0,
+                        description: podcast.description ?? "",
                         progress: 0,
                         artworkURL: podcast.imageURL,
                         feedID: podcast.id
@@ -128,7 +130,9 @@ extension HomeVC_Madina {
                     self.filteredPodcasts = mapped
                     mapped.isEmpty ? self.showEmptyState() : self.showResultsState()
                 }
-            } catch { }
+            } catch {
+                await MainActor.run { self.showEmptyState() }
+            }
         }
     }
 
@@ -166,7 +170,7 @@ extension HomeVC_Madina {
         deactivateSearch()
     }
 
-    // MARK: - TableView helpers для searchResultsTableView
+    // MARK: - TableView helpers
     func numberOfSearchRows(in section: Int) -> Int {
         switch currentSearchState {
         case .results:
@@ -217,7 +221,6 @@ extension HomeVC_Madina {
             guard indexPath.row < filteredPodcasts.count else { return }
             let podcast = filteredPodcasts[indexPath.row]
             showMiniPlayer(with: podcast)
-            loadEpisodesAndPlay(for: podcast)
             let vc = DetailsViewController(podcast: podcast)
             navigationController?.pushViewController(vc, animated: true)
 

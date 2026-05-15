@@ -15,6 +15,8 @@ final class PlayerService {
     var onEpisodeChanged: ((Episode?) -> Void)?
     var onPlaybackStateChanged: ((Bool) -> Void)?
     var onProgressChanged: ((Double, Double) -> Void)?
+    var onPlaybackStateChanged2: ((Bool) -> Void)?
+    var onProgressChanged2: ((Double, Double) -> Void)?
     
     private(set) var episodes: [Episode] = []
     private(set) var currentIndex: Int = 0
@@ -81,11 +83,13 @@ final class PlayerService {
         configureAudioSession()
         player?.play()
         onPlaybackStateChanged?(true)
+        onPlaybackStateChanged2?(true)
     }
-    
+
     func pause() {
         player?.pause()
         onPlaybackStateChanged?(false)
+        onPlaybackStateChanged2?(false)
     }
     
     func next() {
@@ -140,6 +144,7 @@ final class PlayerService {
         
         onEpisodeChanged?(episode)
         onPlaybackStateChanged?(true)
+        onPlaybackStateChanged2?(true)
     }
     
     private func configureAudioSession() {
@@ -169,17 +174,16 @@ final class PlayerService {
             
             let current = time.seconds.isFinite ? time.seconds : 0
             let total = self.player?.currentItem?.duration.seconds.isFinite == true
-
-            ? self.player?.currentItem?.duration.seconds ?? 0
-                            : 0
-                        
-                        self.onProgressChanged?(current, total)
-                    }
-                }
+                ? self.player?.currentItem?.duration.seconds ?? 0
+                : 0
+            self.onProgressChanged?(current, total)
+            self.onProgressChanged2?(current, total)
+        }
+    }
                 
-                private func removeObserver() {
-                    guard let token = timeObserverToken else { return }
-                    player?.removeTimeObserver(token)
-                    timeObserverToken = nil
-                }
-            }
+    private func removeObserver() {
+        guard let token = timeObserverToken else { return }
+        player?.removeTimeObserver(token)
+        timeObserverToken = nil
+    }
+}
